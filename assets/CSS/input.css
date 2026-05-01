@@ -1,0 +1,32 @@
+/* ========= GOOGLE FONTS LINK ========== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/* ========= TAILWIND ========== */
+@import "tailwindcss";
+
+/* ========= VARIABLES ========= */
+@theme{
+    /* =========== FONTS =========== */
+    --font-primary-font: "Poppins", sans-serif;
+}
+
+/* ========= BASE CLASSES ========== */
+@layer base {
+    body{
+        @apply m-0 p-0 box-border font-primary-font;
+    }
+
+    header{
+        @apply h-14 w-full;
+    }
+
+    section{
+        @apply w-full py-20;
+    }
+}
+
+@layer utilities {
+   .container{
+    @apply w-full max-w-7xl mx-auto;
+   } 
+}
