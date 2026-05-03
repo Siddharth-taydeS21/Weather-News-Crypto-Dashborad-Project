@@ -5,28 +5,120 @@
 @import "tailwindcss";
 
 /* ========= VARIABLES ========= */
-@theme{
+@theme {
     /* =========== FONTS =========== */
     --font-primary-font: "Poppins", sans-serif;
 }
 
 /* ========= BASE CLASSES ========== */
 @layer base {
-    body{
-        @apply m-0 p-0 box-border font-primary-font;
+    html{
+        @apply scroll-smooth;
     }
 
-    header{
-        @apply h-14 w-full;
+    body {
+        @apply m-0 p-0 box-border font-primary-font tracking-[1px];
     }
 
-    section{
+    header {
+        @apply w-full p-2 fixed;
+    }
+
+    section {
         @apply w-full py-20;
+    }
+
+    ::-webkit-scrollbar{
+        @apply w-[8px];
+    }
+
+    ::-webkit-scrollbar-thumb{
+        @apply bg-gray-400 rounded-xl;
     }
 }
 
 @layer utilities {
-   .container{
-    @apply w-full max-w-7xl mx-auto;
-   } 
+    .container {
+        @apply w-full max-w-7xl mx-auto p-4;
+    }
+
+    .img {
+        @apply w-full h-full object-cover object-center;
+    }
+
+    /* =========================== WEATHER SECTION REUSABLE CLASSES ========================== */
+    .highlight_card {
+        @apply bg-gray-100 border border-gray-200 p-3 rounded-2xl flex flex-col justify-between gap-y-4;
+    }
+
+    .highlight_card div:nth-child(2)>h2 {
+        @apply font-bold;
+    }
+
+    .highlight_card div:nth-child(2) {
+        @apply md:flex md:justify-between md:items-center md:px-2;
+    }
+
+    .weather_forecast_container .forecast_card {
+        @apply shadow-md p-3 grid gap-y-3 rounded-2xl border border-gray-200 md:justify-center;
+    }
+
+    .weather_forecast_container .forecast_card .card_description {
+        @apply font-bold;
+    }
+
+    /* =========================== NEWS SECTION REUSABLE CLASSES ========================== */
+
+    .headline_title, .news_title{
+        @apply flex items-center;
+    }
+
+    .news_slide{
+        @apply  flex gap-4 w-full h-[120px] lg:h-[150px] overflow-hidden bg-gray-100 rounded-lg;
+    }
+
+    .headline_image{
+        @apply  w-4/10 bg-gray-400 rounded-lg;
+    }
+
+    .headline_title{
+        @apply w-6/10;
+    }
+
+    .news_section_title,
+    .top_headline_title,
+    .braking_news_title{
+        @apply text-3xl pb-4 md:pb-8 md:text-4xl font-extrabold mb-4 text-center md:text-start;
+    }
+
+    .news_section_title{
+        @apply mt-18 md:mt-22;
+    }
+
+    .news_card {
+        @apply  bg-gray-100 p-3 rounded-2xl flex flex-col gap-4 justify-center;
+    }
+
+    .news_card .news_image{
+        @apply  w-full max-md:h-[170px] md:h-[220px] bg-gray-400 rounded-xl;
+    }
+
+    .business_news_container,
+    .tech_news_container,
+    .sports_news_container{
+        @apply bg-white p-4 rounded-3xl shadow-md border border-gray-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] xl:grid-cols-4 gap-4 justify-center max-md:h-[600px] overflow-y-scroll;
+    }
+
+    /* =========================== FOOTER SECTION REUSABLE CLASSES ========================== */
+    .footer_list{
+        @apply flex flex-col gap-y-2 cursor-pointer;
+    }
+
+    .footer_list_title{
+        @apply font-bold mb-2;
+    }
+
+    .footer_list li:not(:first-child){
+        @apply text-gray-600 transition-colors duration-400 hover:text-black;
+    }
 }

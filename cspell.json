@@ -10,5 +10,18 @@
       "name": "HTML-id",
       "pattern": "/$^/"
     }
+  ],
+  "words": [
+    "accusamus",
+    "adipisicing",
+    "amet",
+    "blanditiis",
+    "consectetur",
+    "elit",
+    "Fugiat",
+    "incidunt",
+    "veniam",
+    "voluptatibus",
+    "Voluptatum"
   ]
 }

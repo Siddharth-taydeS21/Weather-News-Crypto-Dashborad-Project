@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,16 +10,527 @@
 
     <!-- ======================= REMIX ICON =========================== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
-    
+
     <!-- ======================= TAILWIND CSS =========================== -->
     <link rel="stylesheet" href="./assets/CSS/output.css">
-    
+
     <title>Weather | News | Crypto Dashboard</title>
 </head>
+
 <body>
-    <h1 class="text-3xl bg-red-200">Hello</h1>
-    
+    <!-- ======================= HEADER =========================== -->
+    <header>
+        <nav
+            class="w-full lg:max-w-7xl mx-auto h-full bg-gray-200 p-4 rounded-4xl flex justify-between items-center relative md:px-8">
+            <a href="#" class="logo text-black text-xl font-semibold md:text-2xl" id="logo">DASHBOARD</a>
+
+            <div
+                class="nav_menu max-lg:absolute max-lg:top-17 max-lg:left-[120%] max-lg:right-0 max-lg:w-3/5 max-lg:mx-auto max-lg:bg-gray-200 max-lg:text-center max-lg:p-6 max-lg:border max-lg:border-gray-400 max-lg:rounded-4xl transition-[left] duration-500">
+                <ul class="nav_list max-lg:flex max-lg:flex-col max-lg:gap-y-3 flex gap-x-8">
+                    <li
+                        class="nav_link text-black lg:text-md font-semibold transition-colors duration-300 hover:text-blue-500">
+                        <a href="#">Home</a>
+                    </li>
+
+                    <li
+                        class="nav_link text-black lg:text-md font-semibold transition-colors duration-300 hover:text-blue-500">
+                        <a href="#news">News</a>
+                    </li>
+
+                    <li
+                        class="nav_link text-black lg:text-md font-semibold transition-colors duration-300 hover:text-blue-500">
+                        <a href="#sports_news">Sports News</a>
+                    </li>
+
+                    <li
+                        class="nav_link text-black lg:text-md font-semibold transition-colors duration-300 hover:text-blue-500">
+                        <a href="#tech_news">Tech News</a>
+                    </li>
+
+                    <li
+                        class="nav_link text-black lg:text-md font-semibold transition-colors duration-300 hover:text-blue-500">
+                        <a href="#business_news">Business News</a>
+                    </li>
+
+                    <li
+                        class="nav_link text-black lg:text-md font-semibold transition-colors duration-300 hover:text-blue-500">
+                        <a href="#crypto">Crypto</a>
+                    </li>
+                </ul>
+
+                <!-- CLOSE BUTTON -->
+                <div id="close_button" class="absolute top-4 right-5 lg:hidden text-black font-semibold cursor-pointer">
+                    <i class="ri-close-large-fill"></i>
+                </div>
+            </div>
+
+            <div id="toggle_button" class="lg:hidden">
+                <i class="ri-menu-line text-black text-xl font-semibold cursor-pointer"></i>
+            </div>
+            <!-- TOGGLE BUTTON -->
+        </nav>
+    </header>
+
+    <!-- ======================= MAIN =========================== -->
+    <main>
+        <!-- ======================= WEATHER SECTION =========================== -->
+        <section id="weather">
+            <div class="weather_container container grid gap-y-12 justify-center">
+                <div class="weather_main_Content grid gap-10 w-full">
+                    <div class="weather_title_searchBar grid gap-8 md:gap-4 w-full items-center md:grid-cols-[2fr_3fr]">
+                        <div class="grid gap-3">
+                            <h3
+                                class="weather_description text-lg font-semibold md:text-2xl md:font-extrabold text-shadow-sm">
+                                Get Weather, News & Crypto
+                                related Details
+                            </h3>
+                            <div
+                                class="weather_heading text-4xl font-bold md:font-extrabold lg:text-5xl text-shadow-sm">
+                                ALL IN ONE PLACE!
+                            </div>
+                        </div>
+
+                        <div class="weather_search_bar w-full flex flex-col gap-y-4 justify-center">
+                            <input type="text" id="search_input" placeholder="Search your City"
+                                class="shadow-md bg-gray-50 border border-gray-100 w-full p-3 px-5 rounded-xl">
+                            <div class="line_break bg-gray-200 h-[2px] w-9/10 mx-auto flex justify-center">
+                                <span class="-mt-3 bg-white px-1 py-0">or</span>
+                            </div>
+                            <button id="current_locationBtn"
+                                class="shadow-md bg-gray-50 border border-gray-100 w-full p-3 rounded-xl font-semibold">Use your current
+                                location</button>
+                        </div>
+                    </div>
+
+                    <div class="wether_details grid gap-4 md:grid-cols-[2fr_3fr]">
+
+                        <div class="main_weather_card flex flex-col justify-between gap-y-3 shadow-md/20 border border-gray-100 p-3 md:p-5 rounded-2xl">
+                            <div class="location w-full flex justify-between items-center p-2 bg-gray-200 rounded-4xl">
+                                <span id="city" class="ml-3">Mumbai</span>
+                                <span id="country" class="bg-blue-300 p-[.25rem_.5rem_.25rem_1rem] rounded-3xl">
+                                    India
+                                    <i class="ri-map-pin-fill"></i>
+                                </span>
+                            </div>
+
+                            <img src="./assets/Images/02d.png" alt="image" id="weather_img" class="w-[180px]">
+                            <!-- for response link reference -->
+                            <!-- scr='https://openweathermap.org{icon_code}@2x.png' -->
+                            <div class="temperature text-6xl font-bold md:text-7xl">24°C</div>
+                            <h2 class="weather_description text-2xl font-bold -mt-2 mb-2 md:text-3xl md:-mt-6">Cloudy
+                            </h2>
+
+                            <div class="detail_badges text-sm flex gap-3 items-center">
+                                <span class="max_temp bg-red-200 px-2 py-1 rounded-2xl">MXA-TEMP: 00</span>
+                                <span class="min_temp bg-blue-200 px-2 py-1 rounded-2xl">MIN-TEMP: 00</span>
+                            </div>
+                        </div>
+
+                        <div class="weather_highlights_cards grid gap-6 shadow-md/20 border border-gray-100 p-[1.5rem_.74rem] rounded-2xl">
+                            <h1 class="text-center text-3xl lg:text-4xl font-bold">Todays Highlights</h1>
+                            <div class="highlights_cards_container grid gap-4 grid-cols-2 w-full">
+                                <article class="highlight_card">
+                                    <div id="item_image" class="w-20 mx-auto">
+                                        <img src="./assets/Images/sun-rise.png" alt="image">
+                                    </div>
+                                    <div>
+                                        <h2>Sun-rise: </h2>
+                                        <span id="sunrise">00.00</span>
+                                    </div>
+                                </article>
+
+                                <article class="highlight_card">
+                                    <div id="item_image" class="w-22 mx-auto">
+                                        <img src="./assets/Images/sun-set.png" alt="image">
+                                    </div>
+                                    <div>
+                                        <h2>Sun-set: </h2>
+                                        <span id="sunset">00.00</span>
+                                    </div>
+                                </article>
+
+                                <article class="highlight_card">
+                                    <div id="item_image" class="w-18 mx-auto">
+                                        <img src="./assets/Images/humidity.png" alt="image">
+                                    </div>
+                                    <div>
+                                        <h2>Humidity: </h2>
+                                        <span id="humidity">00.00</span>
+                                    </div>
+                                </article>
+
+                                <article class="highlight_card">
+                                    <div id="item_image" class="w-19 mt-2 mx-auto">
+                                        <img src="./assets/Images/wind-speed.png" alt="image">
+                                    </div>
+                                    <div>
+                                        <h2>Wind speed: </h2>
+                                        <span id="windSpeed">00.00</span>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="weather_forecast">
+                    <h1 class="weather_forecast_title my-2 text-3xl md:text-4xl md:mb-4 font-extrabold">
+                        Next 4 days weather forecast
+                    </h1>
+                    <div class="weather_forecast_container grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <article class="forecast_card">
+                            <p class="card_date">dd/mm/yy</p>
+                            <img src="./assets/Images/02d.png" alt="" class="card_icon">
+                            <div class="card_temperature text-4xl font-bold">24°C</div>
+                            <p class="card_description">Cloudy</p>
+                        </article>
+
+                        <article class="forecast_card">
+                            <p class="card_date">dd/mm/yy</p>
+                            <img src="./assets/Images/02d.png" alt="" class="card_icon">
+                            <div class="card_temperature text-4xl font-bold">24°C</div>
+                            <p class="card_description">Cloudy</p>
+                        </article>
+
+                        <article class="forecast_card">
+                            <p class="card_date">dd/mm/yy</p>
+                            <img src="./assets/Images/02d.png" alt="" class="card_icon">
+                            <div class="card_temperature text-4xl font-bold">24°C</div>
+                            <p class="card_description">Cloudy</p>
+                        </article>
+
+                        <article class="forecast_card">
+                            <p class="card_date">dd/mm/yy</p>
+                            <img src="./assets/Images/02d.png" alt="" class="card_icon">
+                            <div class="card_temperature text-4xl font-bold">24°C</div>
+                            <p class="card_description">Cloudy</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= NEWS SECTION =========================== -->
+        <section id="news" class="bg-gray-100">
+            <div class="news_container container grid justify-center sm:grid-cols-[470px] md:grid-cols-1 gap-12" id="main_news">
+                <div class="breaking_news_container grid gap-6 gap-y-10 md:grid-cols-[4fr_3fr]">
+                    <div class="breaking_news">
+                        <h1 class="braking_news_title">Breaking News</h1>
+                        <div
+                            class="breaking_news_content  w-full h-[440px] flex flex-col justify-between bg-white shadow-md border border-gray-200 p-3 rounded-2xl">
+                            <div class="breaking_news_image w-full h-[300px] bg-gray-400 rounded-xl mb-4">
+                                <!-- <img src="" alt="" id="breaking_news_image"> -->
+                            </div>
+                            <h1 class="breaking_news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi incidunt voluptatibus quo
+                                voluptatum blanditiis.
+                            </h1>
+                        </div>
+                    </div>
+
+                    <div class="top_headlines">
+                        <h1 class="top_headline_title">Top Headlines</h1>
+
+                        <div
+                            class="top_headlines_container grid gap-4 max-h-[440px] overflow-y-scroll bg-white shadow-md border border-gray-200 p-3 rounded-2xl">
+                            <article
+                                class="news_slide">
+                                <div class="headline_image">
+                                    <!-- <img src="" alt=""> -->
+                                </div>
+                                <div class="headline_title">
+                                    <h1 id="headline_title_text" class="overflow-clip">Lorem, ipsum dolor sit amet
+                                        consectetur adipisicing elit. Fugiat accusamus voluptatibus minus?</h1>
+                                </div>
+                            </article>
+
+                            <article
+                                class="news_slide">
+                                <div class="headline_image">
+                                    <!-- <img src="" alt=""> -->
+                                </div>
+                                <div class="headline_title">
+                                    <h1 id="headline_title_text" class="overflow-clip">Lorem, ipsum dolor sit amet
+                                        consectetur adipisicing elit. Fugiat accusamus voluptatibus minus?</h1>
+                                </div>
+                            </article>
+
+                            <article
+                                class="news_slide">
+                                <div class="headline_image">
+                                    <!-- <img src="" alt=""> -->
+                                </div>
+                                <div class="headline_title">
+                                    <h1 id="headline_title_text" class="overflow-clip">Lorem, ipsum dolor sit amet
+                                        consectetur adipisicing elit. Fugiat accusamus voluptatibus minus?</h1>
+                                </div>
+                            </article>
+
+                            <article
+                                class="news_slide">
+                                <div class="headline_image">
+                                    <!-- <img src="" alt=""> -->
+                                </div>
+                                <div class="headline_title">
+                                    <h1 id="headline_title_text" class="overflow-clip">Lorem, ipsum dolor sit amet
+                                        consectetur adipisicing elit. Fugiat accusamus voluptatibus minus?</h1>
+                                </div>
+                            </article>
+
+                            <article
+                                class="news_slide">
+                                <div class="headline_image">
+                                    <!-- <img src="" alt=""> -->
+                                </div>
+                                <div class="headline_title">
+                                    <h1 id="headline_title_text" class="overflow-clip">Lorem, ipsum dolor sit amet
+                                        consectetur adipisicing elit. Fugiat accusamus voluptatibus minus?</h1>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="sports_news" id="sports_news">
+                    <h1 class="news_section_title">Sports News</h1>
+
+                    <div class="sports_news_container">
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+                    </div>
+                </div>
+
+
+                <div class="tech_news" id="tech_news">
+                    <h1 class="news_section_title">Technology News</h1>
+
+                    <div class="tech_news_container">
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+                    </div>
+                </div>
+
+
+                <div class="business_news" id="business_news">
+                    <h1 class="news_section_title">Business News</h1>
+
+                    <div class="business_news_container">
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <!-- <img src="" alt="image" class="img"> -->
+                            </div>
+                            <h1 class="news_title">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
+                            </h1>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= CRYPTO SECTION =========================== -->
+        <!-- <section id="crypto">
+
+        </section> -->
+    </main>
+
+    <!-- ======================= FOOTER =========================== -->
+    <footer class="py-14 md:px-8">
+        <div class="container grid gap-y-12">
+            <div class="footer_title grid gap-y-4">
+                <a href="#" class="logo text-black text-2xl font-semibold md:text-3xl" id="logo">DASHBOARD</a>
+                <h1 class="title text-xl font-bold">Get your all news related thoughts fullfil here</h1> 
+            </div>
+
+            <div class="footer_grid grid gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <ul class="footer_list">
+                    <li class="footer_list_title">Solutions</li>
+                    <li>Marketing</li>
+                    <li>Analytics</li>
+                    <li>Automation</li>
+                    <li>Commerce</li>
+                    <li>Insights</li>
+                </ul>
+
+                <ul class="footer_list">
+                    <li class="footer_list_title">Support</li>
+                    <li>Submit ticket</li>
+                    <li>Documentation</li>
+                    <li>Guides</li>
+                </ul>
+
+                <ul class="footer_list">
+                    <li class="footer_list_title">Company</li>
+                    <li>About</li>
+                    <li>Blog</li>
+                    <li>Jobs</li>
+                    <li>Press</li>
+                </ul>
+
+                <ul class="footer_list">
+                    <li class="footer_list_title">Legal</li>
+                    <li>Terms of service</li>
+                    <li>Privacy policy</li>
+                    <li>License</li>
+                </ul>
+            </div>
+
+            <hr class="text-gray-400">
+
+            <span class="text-sm text-gray-500 text-center">© 2026 All rights reserved.</span>
+        </div>
+    </footer>
     <!-- ======================= MAIN JS =========================== -->
     <script src="./assets/JS/main.js"></script>
 </body>
+
 </html>
