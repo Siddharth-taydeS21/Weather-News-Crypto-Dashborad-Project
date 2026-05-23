@@ -21,7 +21,7 @@
     }
 
     header {
-        @apply w-full p-2 fixed;
+        @apply w-full p-2 fixed backdrop-blur-sm z-100;
     }
 
     section {
@@ -47,6 +47,7 @@
     }
 
     /* =========================== WEATHER SECTION REUSABLE CLASSES ========================== */
+
     .highlight_card {
         @apply bg-gray-100 border border-gray-200 p-3 rounded-2xl flex flex-col justify-between gap-y-4;
     }
@@ -60,11 +61,7 @@
     }
 
     .weather_forecast_container .forecast_card {
-        @apply shadow-md p-3 grid gap-y-3 rounded-2xl border border-gray-200 md:justify-center;
-    }
-
-    .weather_forecast_container .forecast_card .card_description {
-        @apply font-bold;
+        @apply shadow-md p-3 grid gap-y-3 lg:grow rounded-2xl border border-gray-200 relative;
     }
 
     /* =========================== NEWS SECTION REUSABLE CLASSES ========================== */
