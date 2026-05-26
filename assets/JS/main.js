@@ -1,5 +1,6 @@
 // ================================= MAIN PAGE LOGIC ==================================
-const API_KEY = 'aad3ff0d1617a1925037afb51c4feefc'
+const WEATHER_API_KEY = 'aad3ff0d1617a1925037afb51c4feefc';
+const NEWS_API_KEY = 'pub_0ca0c6f095ce4be7bc83b7da6ac077ed';
 
 //  ====== SHOW MOBILE NAV MENU ON MENU CLICK ======= 
 const toggle = document.getElementById('toggle_button');
@@ -22,6 +23,113 @@ nav_links.forEach(link => {
 closeBtn.addEventListener('click', toggleLeft)
 
 // ===============================  RENDERING DATA ON MAIN PAGE =============================
+const turnCateText = (str, limit) => {
+    const maxLength = limit;
+    if (str.length > maxLength) {
+        return str.slice(0, maxLength) + '...';
+    }
+    return str + '.';
+}
+
+// =============================== ADDING BREAKING NEWS DATA TO THE MAIN PAGE =====================================
+const addBreakingNews = (obj) => {
+    const breakingNewsLink = obj.results[0].link;
+    const breakingNewsTitle = obj.results[0].title;
+    const breakingNewsImage = obj.results[0].image_url;
+    // const breakingNewsDescription = obj.results[0].description;
+
+    document.querySelector('.breaking_news_image').innerHTML = `<img src="${breakingNewsImage}" alt="news Image" class="object-cover object-center bg-no-repeat">`;
+
+    const breakingNewsTitleElem = document.querySelector('.breaking_news_title');
+    breakingNewsTitleElem.innerHTML = `${breakingNewsTitle}`;
+    breakingNewsTitleElem.href = breakingNewsLink;
+}
+
+const addTopHeadlines = (obj) => {
+    const headlinesContainer = document.querySelector('.top_headlines_container')
+    headlinesContainer.innerHTML = '';
+    obj.results.forEach(news => {
+        headlinesContainer.innerHTML += `
+                            <article class="news_slide">
+                                <div class="headline_image">
+                                    <img src="${news.image_url}" alt="news image" class="object-cover object-center bg-no-repeat">
+                                </div>
+                                <div class="headline_title">
+                                    <a href='${news.link}' id="headline_title_text" class="overflow-clip font-bold">${turnCateText(news.title, 80)}</a>
+                                </div>
+                            </article>
+        `;
+    })
+    headlinesContainer.innerHTML += `
+                        <div class="rounded-2xl my-8 flex justify-center items-center">
+                            <button class="bg-blue-400 h-10 w-40 rounded-2xl flex justify-center items-center">Show More..>></button>
+                        </div>
+    `
+}
+
+// =============================== NEWS API DATA FETCH LOGIC =====================================
+
+const sportsNewsContainer = document.querySelector('.sports_news_container');
+const techNewsContainer = document.querySelector('.tech_news_container');
+const businessNewsContainer = document.querySelector('.business_news_container');
+
+const getNews = async (str) => {
+    try {
+        const response = await fetch(`https://newsdata.io/api/1/latest?apikey=${NEWS_API_KEY}&qInTitle=${str}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch news data!');
+        }
+
+        const data = await response.json();
+        console.log(data);
+        addBreakingNews(data);
+        addTopHeadlines(data);
+
+    } catch (error) {
+        alert("Could not load data. Please try again later.");
+        console.log('There was en error: Not found!', error)
+    }
+}
+
+const getCategoryNews = async (str, category, HtmlContainer) => {
+ try {
+    const response = await fetch(`https://newsdata.io/api/1/latest?apikey=${NEWS_API_KEY}&q=${str}&category=${category}&size=7`);
+    if(!response.ok){
+        throw new Error('Failed to fetch news data!');
+    }
+
+    const data = await response.json();
+    console.log(data);
+
+    // ============= USING FETCHED DATA TO RENDER ON HTML ==============
+
+    HtmlContainer.innerHTML = '';
+
+    data.results.forEach(news => {
+        HtmlContainer.innerHTML += `
+                        <article class="news_card">
+                            <div class="news_image">
+                                <img src="${news.image_url}" alt="image" class="object-cover object-center bg-no-repeat">
+                            </div>
+                            <a href='${news.link}' class="news_title">
+                                ${turnCateText(news.title, 80)}
+                            </a>
+                        </article>
+        `;
+    })
+
+    HtmlContainer.innerHTML += `
+                        <div class="rounded-2xl flex justify-center items-center">
+                            <button class="bg-blue-400 h-10 w-40 rounded-2xl flex justify-center items-center">Show More..>></button>
+                        </div>
+    `
+
+    
+ } catch (error) {
+    alert("Could not load data. Please try again later.");
+    console.log('There was en error: Not found!', error)
+ }
+}
 
 // ==================== OBJECT OF WEATHER CONDITIONS AND WEATHER IMAGES ======================= 
 const weatherImages = [
@@ -112,8 +220,7 @@ const getWindSpeed = (speed) => {
     return `${Math.round(milesPerHours)} mph <br> (${Math.round(km_perHours)} km/h)`
 }
 
-// =========== CONVERTING SPEED FROM METER PER SECOND TO MILES PER HUR AND KM/HOUR ===========
-
+// =========== DISPLAYING DATA IN TODAY'S HIGHLIGHTS CARD ===========
 
 const addTodaysHighlights = (obj) => {
     const { sunRiseTime, sunSetTime, humidity, windSpeed } = obj;
@@ -129,7 +236,7 @@ const addWeatherForeCastCards = (arr) => {
     const forecastContainer = document.querySelector('.weather_forecast_container');
     forecastContainer.innerHTML = '';
     arr.forEach((obj, index) => {
-        console.log(obj)
+        // console.log(obj)
         const unixTimestamp = obj.dt;
         const date = new Date(unixTimestamp * 1000);
         if (index === 0) {
@@ -186,11 +293,11 @@ const WeatherForecastObjects = (obj) => {
 const userInput = document.getElementById('search_input');
 
 const getWeatherDetails = async (obj) => {
-    const { lat, lon, API_KEY } = obj;
+    const { lat, lon, cityName, WEATHER_API_KEY } = obj;
 
-    // console.log(lat, lon, cityName, API_KEY);
+    // console.log(lat, lon, cityName, WEATHER_API_KEY);
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`)
         if (!response.ok) {
             throw new Error('Failed to fetch weather data!')
         }
@@ -240,6 +347,15 @@ const getWeatherDetails = async (obj) => {
 
         //GETTING DATA FOR NEXT 4 DAYS FORECAST (.weather_highlights_cards) :-
         WeatherForecastObjects(data);
+
+        // GIVING THE CITY NAME TO GET_NEWS_FUNCTION
+        getNews(cityName);
+
+        // GIVING THE CITY NAME TO GET CATEGORY VISE NEWS;
+        getCategoryNews(cityName, "sports", sportsNewsContainer);
+        getCategoryNews(cityName, "technology", techNewsContainer);
+        getCategoryNews(cityName, "business", businessNewsContainer);
+
     }
     catch (error) {
         console.log(error);
@@ -247,12 +363,14 @@ const getWeatherDetails = async (obj) => {
     }
 }
 
+// FETCHING DATA ON THE BASIC OF USER INPUT
+
 const getGeoLocation = () => {
     userInput.addEventListener('change', async (e) => {
         const city = e.target.value.trim();
 
         try {
-            const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`)
+            const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${WEATHER_API_KEY}`)
             if (!response.ok) {
                 throw new Error('Failed to fetch weather data!')
             }
@@ -262,7 +380,7 @@ const getGeoLocation = () => {
             const lon = data[0].lon;
             const cityName = data[0].name;
 
-            getWeatherDetails({ lat, lon, API_KEY });
+            getWeatherDetails({ lat, lon, cityName, WEATHER_API_KEY });
         } catch (error) {
             alert("Could not load data. Please try again later.");
             console.log('There was en error: Not found!', error)
@@ -277,14 +395,14 @@ const CurrentLocationBtn = document.getElementById('current_locationBtn')
 const getUserLocation = () => {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
 
-          getWeatherDetails({ lat, lon, API_KEY });
+            getWeatherDetails({ lat, lon, WEATHER_API_KEY });
         });
-      } else {
+    } else {
         console.log("Geolocation is not supported by this browser.");
-      }
-      
+    }
+
 }
 CurrentLocationBtn.addEventListener('click', getUserLocation)

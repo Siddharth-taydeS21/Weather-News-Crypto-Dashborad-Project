@@ -10,9 +10,9 @@
       "Courier New", monospace;
     --color-red-200: oklch(88.5% 0.062 18.334);
     --color-amber-100: oklch(96.2% 0.059 95.617);
-    --color-amber-200: oklch(92.4% 0.12 95.746);
     --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-blue-300: oklch(80.9% 0.105 251.813);
+    --color-blue-400: oklch(70.7% 0.165 254.624);
     --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-gray-100: oklch(96.7% 0.003 264.542);
@@ -272,6 +272,9 @@
   .my-2 {
     margin-block: calc(var(--spacing) * 2);
   }
+  .my-8 {
+    margin-block: calc(var(--spacing) * 8);
+  }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
@@ -289,6 +292,12 @@
   }
   .table {
     display: table;
+  }
+  .h-10 {
+    height: calc(var(--spacing) * 10);
+  }
+  .h-20 {
+    height: calc(var(--spacing) * 20);
   }
   .h-\[2px\] {
     height: 2px;
@@ -325,6 +334,9 @@
   }
   .w-22 {
     width: calc(var(--spacing) * 22);
+  }
+  .w-40 {
+    width: calc(var(--spacing) * 40);
   }
   .w-\[92\%\] {
     width: 92%;
@@ -364,6 +376,9 @@
   }
   .items-end {
     align-items: flex-end;
+  }
+  .justify-around {
+    justify-content: space-around;
   }
   .justify-between {
     justify-content: space-between;
@@ -413,6 +428,9 @@
   .gap-y-12 {
     row-gap: calc(var(--spacing) * 12);
   }
+  .place-self-center {
+    place-self: center;
+  }
   .overflow-clip {
     overflow: clip;
   }
@@ -447,9 +465,6 @@
   .bg-amber-100 {
     background-color: var(--color-amber-100);
   }
-  .bg-amber-200 {
-    background-color: var(--color-amber-200);
-  }
   .bg-black {
     background-color: var(--color-black);
   }
@@ -458,6 +473,9 @@
   }
   .bg-blue-300 {
     background-color: var(--color-blue-300);
+  }
+  .bg-blue-400 {
+    background-color: var(--color-blue-400);
   }
   .bg-gray-50 {
     background-color: var(--color-gray-50);
@@ -517,6 +535,9 @@
   .object-cover {
     object-fit: cover;
   }
+  .object-center {
+    object-position: center;
+  }
   .p-2 {
     padding: calc(var(--spacing) * 2);
   }
@@ -543,6 +564,9 @@
   }
   .py-1 {
     padding-block: calc(var(--spacing) * 1);
+  }
+  .py-8 {
+    padding-block: calc(var(--spacing) * 8);
   }
   .py-14 {
     padding-block: calc(var(--spacing) * 14);
@@ -637,6 +661,11 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
   .transition-colors {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
@@ -661,6 +690,13 @@
     &:hover {
       @media (hover: hover) {
         color: var(--color-blue-500);
+      }
+    }
+  }
+  .hover\:underline {
+    &:hover {
+      @media (hover: hover) {
+        text-decoration-line: underline;
       }
     }
   }
@@ -923,6 +959,24 @@
     border-radius: var(--radius-xl);
     background-color: var(--color-gray-400);
   }
+  img {
+    height: 100%;
+    width: 100%;
+  }
+  a {
+    --tw-font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-semibold);
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
+    &:hover {
+      @media (hover: hover) {
+        text-decoration-line: underline;
+      }
+    }
+  }
 }
 @layer utilities {
   .container {
@@ -1034,7 +1088,6 @@
   .news_card {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: calc(var(--spacing) * 4);
     border-radius: var(--radius-2xl);
     background-color: var(--color-gray-100);
@@ -1042,6 +1095,7 @@
   }
   .news_card .news_image {
     width: 100%;
+    overflow: hidden;
     border-radius: var(--radius-xl);
     background-color: var(--color-gray-400);
     @media (width < 48rem) {

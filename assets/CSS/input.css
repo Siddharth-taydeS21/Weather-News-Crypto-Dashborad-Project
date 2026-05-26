@@ -35,6 +35,14 @@
     ::-webkit-scrollbar-thumb{
         @apply bg-gray-400 rounded-xl;
     }
+
+    img{
+        @apply h-full w-full;
+    }
+
+    a{
+        @apply transition duration-300 hover:underline font-semibold;
+    }
 }
 
 @layer utilities {
@@ -93,11 +101,11 @@
     }
 
     .news_card {
-        @apply  bg-gray-100 p-3 rounded-2xl flex flex-col gap-4 justify-center;
+        @apply  bg-gray-100 p-3 rounded-2xl flex flex-col gap-4;
     }
 
     .news_card .news_image{
-        @apply  w-full max-md:h-[170px] md:h-[220px] bg-gray-400 rounded-xl;
+        @apply  w-full max-md:h-[170px] md:h-[220px] bg-gray-400 rounded-xl overflow-hidden;
     }
 
     .business_news_container,
