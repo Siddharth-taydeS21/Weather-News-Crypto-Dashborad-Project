@@ -1,6 +1,6 @@
 // ================================= MAIN PAGE LOGIC ==================================
 const WEATHER_API_KEY = 'aad3ff0d1617a1925037afb51c4feefc';
-const NEWS_API_KEY = 'pub_0ca0c6f095ce4be7bc83b7da6ac077ed';
+const NEWS_API_KEY = 'pub_ba4fb2f46c3342668ac6a7c7fb810055';
 
 //  ====== SHOW MOBILE NAV MENU ON MENU CLICK ======= 
 const toggle = document.getElementById('toggle_button');
@@ -32,13 +32,16 @@ const turnCateText = (str, limit) => {
 }
 
 // =============================== ADDING BREAKING NEWS DATA TO THE MAIN PAGE =====================================
+const newsImageFallback = '/assets/Images/default_breaking_news_image.avif';
+const getNewsImageSrc = (url) => url || newsImageFallback;
+
+const renderNewsImg = (url, alt) =>
+    `<img src="${getNewsImageSrc(url)}" alt="${alt}" class="object-cover object-center bg-no-repeat" onerror="this.onerror=null;this.src='${newsImageFallback}'">`;
+
 const addBreakingNews = (obj) => {
     const breakingNewsLink = obj.results[0].link;
     const breakingNewsTitle = obj.results[0].title;
-    const breakingNewsImage = obj.results[0].image_url;
-    // const breakingNewsDescription = obj.results[0].description;
-
-    document.querySelector('.breaking_news_image').innerHTML = `<img src="${breakingNewsImage}" alt="news Image" class="object-cover object-center bg-no-repeat">`;
+    document.querySelector('.breaking_news_image').innerHTML = renderNewsImg(obj.results[0].image_url, 'news Image');
 
     const breakingNewsTitleElem = document.querySelector('.breaking_news_title');
     breakingNewsTitleElem.innerHTML = `${breakingNewsTitle}`;
@@ -52,7 +55,7 @@ const addTopHeadlines = (obj) => {
         headlinesContainer.innerHTML += `
                             <article class="news_slide">
                                 <div class="headline_image">
-                                    <img src="${news.image_url}" alt="news image" class="object-cover object-center bg-no-repeat">
+                                    ${renderNewsImg(news.image_url, 'news image')}
                                 </div>
                                 <div class="headline_title">
                                     <a href='${news.link}' id="headline_title_text" class="overflow-clip font-bold">${turnCateText(news.title, 80)}</a>
@@ -62,7 +65,7 @@ const addTopHeadlines = (obj) => {
     })
     headlinesContainer.innerHTML += `
                         <div class="rounded-2xl my-8 flex justify-center items-center">
-                            <button class="bg-blue-400 h-10 w-40 rounded-2xl flex justify-center items-center">Show More..>></button>
+                            <button class="top_headlines_showMoreBtn bg-blue-400 h-10 w-40 rounded-2xl flex justify-center items-center">Show More..>></button>
                         </div>
     `
 }
@@ -91,44 +94,112 @@ const getNews = async (str) => {
     }
 }
 
+// ============================= SHOW MORE BUTTON LOGIC ==================================
+
+const reduceArticles = (HtmlContainer) => {
+    console.log(HtmlContainer);
+}
+
+// const isAllReadyInContainer = (container, link) => {
+//     const arr = [...container.querySelector('.news_card .news_image')]
+//     console.log(arr);
+// }
+
+const fetchNextPage = (str1, str, HtmlContainer, obj) => {
+    const showMoreBtnID = `${str}_show_moreBtn`;
+    const showMoreBtn = document.getElementById(showMoreBtnID)
+    // console.log(obj)
+
+    showMoreBtn.addEventListener('click', async () => {
+        const nextPage = obj.nextPage;
+
+
+        try {
+            const response = await fetch(`https://newsdata.io/api/1/latest?apikey=${NEWS_API_KEY}&q=${str1}&category=${str}&size=7&page=${nextPage}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch news data!');
+            }
+
+            const News_Data = await response.json();
+
+
+            HtmlContainer.removeChild(HtmlContainer.lastElementChild);
+            
+            News_Data.results.forEach(news => {
+                // isAllReadyInContainer(HtmlContainer, getNewsImageSrc(news.image_url))
+
+                HtmlContainer.innerHTML += `
+                            <article class="news_card">
+                                <div class="news_image">
+                                    ${renderNewsImg(news.image_url, 'image')}
+                                </div>
+                                <a href='${news.link}' class="news_title">
+                                    ${turnCateText(news.title, 80)}
+                                </a>
+                            </article>
+            `;
+            })
+
+            HtmlContainer.innerHTML += `
+                        <div class="rounded-2xl flex justify-center items-center py-12">
+                            <button class="bg-blue-400 h-10 w-40 rounded-2xl flex justify-center items-center" id="${str}_show_moreBtn">Show More..>></button>
+                        </div>
+    `
+    reduceArticles(HtmlContainer);
+    fetchNextPage(str1, str, HtmlContainer, News_Data);
+
+        } catch (error) {
+            alert("Could not load data. Please try again later.");
+            console.log('There was en error: Not found!', error)
+        }
+
+    })
+}
+
+
+
+
 const getCategoryNews = async (str, category, HtmlContainer) => {
- try {
-    const response = await fetch(`https://newsdata.io/api/1/latest?apikey=${NEWS_API_KEY}&q=${str}&category=${category}&size=7`);
-    if(!response.ok){
-        throw new Error('Failed to fetch news data!');
-    }
+    try {
+        const response = await fetch(`https://newsdata.io/api/1/latest?apikey=${NEWS_API_KEY}&q=${str}&category=${category}&size=7`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch news data!');
+        }
 
-    const data = await response.json();
-    console.log(data);
+        const data = await response.json();
+        // console.log(data);
 
-    // ============= USING FETCHED DATA TO RENDER ON HTML ==============
+        // ============= USING FETCHED DATA TO RENDER ON HTML ==============
 
-    HtmlContainer.innerHTML = '';
+        HtmlContainer.innerHTML = '';
 
-    data.results.forEach(news => {
-        HtmlContainer.innerHTML += `
+        data.results.forEach(news => {
+            HtmlContainer.innerHTML += `
                         <article class="news_card">
                             <div class="news_image">
-                                <img src="${news.image_url}" alt="image" class="object-cover object-center bg-no-repeat">
+                                ${renderNewsImg(news.image_url, 'image')}
                             </div>
                             <a href='${news.link}' class="news_title">
                                 ${turnCateText(news.title, 80)}
                             </a>
                         </article>
         `;
-    })
+        })
 
-    HtmlContainer.innerHTML += `
+        HtmlContainer.innerHTML += `
                         <div class="rounded-2xl flex justify-center items-center">
-                            <button class="bg-blue-400 h-10 w-40 rounded-2xl flex justify-center items-center">Show More..>></button>
+                            <button class="bg-blue-400 h-10 w-40 rounded-2xl flex justify-center items-center" id="${category}_show_moreBtn">Show More..>></button>
                         </div>
     `
 
-    
- } catch (error) {
-    alert("Could not load data. Please try again later.");
-    console.log('There was en error: Not found!', error)
- }
+        // IF WE WANTED TO FETCH NEXT BATCH OF NEWS 
+        fetchNextPage(str, category, HtmlContainer, data);
+
+
+    } catch (error) {
+        alert("Could not load data. Please try again later.");
+        console.log('There was en error: Not found!', error)
+    }
 }
 
 // ==================== OBJECT OF WEATHER CONDITIONS AND WEATHER IMAGES ======================= 
@@ -245,29 +316,39 @@ const addWeatherForeCastCards = (arr) => {
             dayName = date.toLocaleDateString('en-US', { weekday: 'long' });
         }
 
-        const weatherIcon = obj.weather[0].icon
+        // const weatherIcon = obj.weather[0].icon
         const main_temp = Math.round(obj.main.temp);
         const description = obj.weather[0].description;
         const descriptionText = description.replace(/ /g, "<br>");
+        const weatherStatusCode = obj.weather[0].id;
 
         if (index === 0) {
             forecastContainer.innerHTML += `
                         <article class="forecast_card bg-amber-100">
-                            <p class="card_date font-semibold">${dayName}</p>
-                            <img src="https://openweathermap.org/img/wn/${weatherIcon}@2x.png" alt="icon" class="card_icon scale-150">
-                            <div class="card_temperature text-3xl font-bold">${main_temp}°</div>
-                            <p class="card_description font-bold text-xs text-end absolute right-3 bottom-4">${descriptionText}</p>
-                        </article>
-       `
+                            <p class="card_date">${dayName}</p>
+                            <div class="weather_image_container">
+                            <img src="${getWeatherImageSrc(weatherStatusCode)}" alt="image" class="weather_img">
+                            </div>
+                            <div class="weather_container">
+                                <p class="main_temp">${main_temp}°</p>
+                                <p class="weather_description">${descriptionText}</p>
+                            </div>
+                        </article>          
+           `
         } else {
             forecastContainer.innerHTML += `
                         <article class="forecast_card">
-                            <p class="card_date font-semibold">${dayName}</p>
-                            <img src="https://openweathermap.org/img/wn/${weatherIcon}@2x.png" alt="icon" class="card_icon scale-150">
-                            <div class="card_temperature text-3xl font-bold">${main_temp}°</div>
-                            <p class="card_description font-bold text-xs text-end absolute right-3 bottom-4">${descriptionText}</p>
+                            <p class="card_date">${dayName}</p>
+                            <div class="weather_image_container">
+                            <img src="${getWeatherImageSrc(weatherStatusCode)}" alt="image" class="weather_img">
+                            </div>
+                            <div class="weather_container">
+                                <p class="main_temp">${main_temp}°</p>
+                                <p class="weather_description">${descriptionText}</p>
+                            </div>
                         </article>
-       `
+           
+           `
         }
     })
 }
