@@ -40,7 +40,7 @@ const renderNewsImg = (url, alt) =>
 
 const addBreakingNews = (obj) => {
     const breakingNewsLink = obj.results[0].link;
-    const breakingNewsTitle = obj.results[0].title;
+    const breakingNewsTitle = turnCateText(obj.results[0].title, 140);
     document.querySelector('.breaking_news_image').innerHTML = renderNewsImg(obj.results[0].image_url, 'news Image');
 
     const breakingNewsTitleElem = document.querySelector('.breaking_news_title');
@@ -96,37 +96,30 @@ const getNews = async (str) => {
 
 // ============================= SHOW MORE BUTTON LOGIC ==================================
 
-const reduceArticles = (HtmlContainer) => {
-    console.log(HtmlContainer);
-}
-
-// const isAllReadyInContainer = (container, link) => {
-//     const arr = [...container.querySelector('.news_card .news_image')]
-//     console.log(arr);
-// }
-
-const fetchNextPage = (str1, str, HtmlContainer, obj) => {
+const fetchNextPage = (str1, str, HtmlContainer, obj, clickCount = 0) => {
     const showMoreBtnID = `${str}_show_moreBtn`;
     const showMoreBtn = document.getElementById(showMoreBtnID)
     // console.log(obj)
 
     showMoreBtn.addEventListener('click', async () => {
+        if(clickCount >= 4) return;
+
         const nextPage = obj.nextPage;
-
-
+        
         try {
-            const response = await fetch(`https://newsdata.io/api/1/latest?apikey=${NEWS_API_KEY}&q=${str1}&category=${str}&size=7&page=${nextPage}`);
+            const response = await fetch(`https://newsdata.io/api/1/latest?apikey=${NEWS_API_KEY}&q=${str1}&category=${str}&size=10&page=${nextPage}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch news data!');
             }
-
+            
             const News_Data = await response.json();
-
+            
+            
 
             HtmlContainer.removeChild(HtmlContainer.lastElementChild);
             
             News_Data.results.forEach(news => {
-                // isAllReadyInContainer(HtmlContainer, getNewsImageSrc(news.image_url))
+                if (news.duplicate) return;
 
                 HtmlContainer.innerHTML += `
                             <article class="news_card">
@@ -140,12 +133,15 @@ const fetchNextPage = (str1, str, HtmlContainer, obj) => {
             `;
             })
 
+            const newClickCount = clickCount + 1;
+
+            if (newClickCount >= 4) return;
+
             HtmlContainer.innerHTML += `
                         <div class="rounded-2xl flex justify-center items-center py-12">
                             <button class="bg-blue-400 h-10 w-40 rounded-2xl flex justify-center items-center" id="${str}_show_moreBtn">Show More..>></button>
                         </div>
     `
-    reduceArticles(HtmlContainer);
     fetchNextPage(str1, str, HtmlContainer, News_Data);
 
         } catch (error) {
@@ -161,7 +157,7 @@ const fetchNextPage = (str1, str, HtmlContainer, obj) => {
 
 const getCategoryNews = async (str, category, HtmlContainer) => {
     try {
-        const response = await fetch(`https://newsdata.io/api/1/latest?apikey=${NEWS_API_KEY}&q=${str}&category=${category}&size=7`);
+        const response = await fetch(`https://newsdata.io/api/1/latest?apikey=${NEWS_API_KEY}&q=${str}&category=${category}&size=10`);
         if (!response.ok) {
             throw new Error('Failed to fetch news data!');
         }
@@ -173,7 +169,9 @@ const getCategoryNews = async (str, category, HtmlContainer) => {
 
         HtmlContainer.innerHTML = '';
 
-        data.results.forEach(news => {
+        data.results.forEach((news) => {
+            if (news.duplicate) return;
+
             HtmlContainer.innerHTML += `
                         <article class="news_card">
                             <div class="news_image">

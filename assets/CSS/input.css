@@ -69,7 +69,27 @@
     }
 
     .weather_forecast_container .forecast_card {
-        @apply shadow-md p-3 grid gap-y-3 lg:grow rounded-2xl border border-gray-200 relative;
+        @apply shadow-md p-3 flex flex-col gap-5 rounded-2xl border border-gray-200 relative;
+    }
+
+    .forecast_card .card_date {
+        @apply font-semibold;
+    }
+    
+    .forecast_card .weather_image_container{
+        @apply  h-[120px] rounded-lg overflow-hidden;
+    }
+    
+    .forecast_card .weather_container {
+        @apply flex justify-between items-end font-semibold;
+    }
+    
+    .forecast_card .weather_container .main_temp {
+        @apply text-2xl md:text-3xl lg:text-4xl;
+    }
+    
+    .forecast_card .weather_container .weather_description {
+        @apply  text-sm;
     }
 
     /* =========================== NEWS SECTION REUSABLE CLASSES ========================== */
