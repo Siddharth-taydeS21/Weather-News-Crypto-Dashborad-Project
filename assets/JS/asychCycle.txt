@@ -1,0 +1,28 @@
+ =============================== BEST (LOADING => FETCH => RENDER => CLEAR LOADING) CYCLE ======================================
+ 
+ async function loadWeather(city) {
+
+  showLoading();
+
+  try {
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Weather request failed");
+    }
+
+    const data = await response.json();
+
+    renderWeather(data);
+
+  } catch (error) {
+
+    renderWeatherError(error);
+
+  } finally {
+
+    hideLoading();
+
+  }
+}
