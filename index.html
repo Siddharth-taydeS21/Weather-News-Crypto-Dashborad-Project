@@ -27,33 +27,27 @@
             <div
                 class="nav_menu max-lg:absolute max-lg:top-17 max-lg:left-[120%] max-lg:right-0 max-lg:w-3/5 max-lg:mx-auto max-lg:bg-gray-200 max-lg:text-center max-lg:p-6 max-lg:border max-lg:border-gray-400 max-lg:rounded-4xl transition-[left] duration-500">
                 <ul class="nav_list max-lg:flex max-lg:flex-col max-lg:gap-y-3 flex gap-x-8">
-                    <li
-                        class="nav_link text-black lg:text-md font-semibold transition-colors duration-300 hover:text-blue-500">
+                    <li class="nav_link">
                         <a href="#">Home</a>
                     </li>
 
-                    <li
-                        class="nav_link text-black lg:text-md font-semibold transition-colors duration-300 hover:text-blue-500">
+                    <li class="nav_link">
                         <a href="#news">News</a>
                     </li>
 
-                    <li
-                        class="nav_link text-black lg:text-md font-semibold transition-colors duration-300 hover:text-blue-500">
+                    <li class="nav_link">
                         <a href="#sports_news">Sports News</a>
                     </li>
 
-                    <li
-                        class="nav_link text-black lg:text-md font-semibold transition-colors duration-300 hover:text-blue-500">
+                    <li class="nav_link">
                         <a href="#tech_news">Tech News</a>
                     </li>
 
-                    <li
-                        class="nav_link text-black lg:text-md font-semibold transition-colors duration-300 hover:text-blue-500">
+                    <li class="nav_link">
                         <a href="#business_news">Business News</a>
                     </li>
 
-                    <li
-                        class="nav_link text-black lg:text-md font-semibold transition-colors duration-300 hover:text-blue-500">
+                    <li class="nav_link">
                         <a href="#crypto">Crypto</a>
                     </li>
                 </ul>
@@ -349,64 +343,62 @@
 
                 <!-- ========== LOADING TEMPLATE OF WEATHER FORECAST CARDS (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
                 <template id="weather_forecasts_card_template">
-                        <button id="forecast_loader_btn" type="button"
-                            class="inline-flex justify-center items-center px-4 py-2 mb-3 font-semibold leading-6 text-3xl lg:text-4xl rounded-md text-black  transition ease-in-out duration-150 cursor-not-allowed"
-                            disabled>
-                            <svg class="animate-spin -ml-1 mr-3 size-5 text-black" xmlns="" fill="none"
-                                viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                    stroke-width="4">
-                                </circle>
-                                <path class="opacity-75" fill="currentColor"
-                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                </path>
-                            </svg>
-                            Loading…
-                        </button>
+                    <button id="forecast_loader_btn" type="button"
+                        class="inline-flex justify-center items-center px-4 py-2 mb-3 font-semibold leading-6 text-3xl lg:text-4xl rounded-md text-black  transition ease-in-out duration-150 cursor-not-allowed"
+                        disabled>
+                        <svg class="animate-spin -ml-1 mr-3 size-5 text-black" xmlns="" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                            </circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                        Loading…
+                    </button>
 
-                        <div class="weather_forecast_container grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                            <article class="forecast_card">
-                                <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
-                                <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
-                                </div>
-                                <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
-                            </article>
+                    <div class="weather_forecast_container grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                        <article class="forecast_card">
+                            <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                            <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                            </div>
+                            <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                        </article>
 
-                            <article class="forecast_card">
-                                <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
-                                <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
-                                </div>
-                                <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
-                            </article>
+                        <article class="forecast_card">
+                            <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                            <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                            </div>
+                            <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                        </article>
 
-                            <article class="forecast_card">
-                                <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
-                                <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
-                                </div>
-                                <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
-                            </article>
+                        <article class="forecast_card">
+                            <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                            <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                            </div>
+                            <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                        </article>
 
-                            <article class="forecast_card">
-                                <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
-                                <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
-                                </div>
-                                <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
-                            </article>
+                        <article class="forecast_card">
+                            <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                            <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                            </div>
+                            <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                        </article>
 
-                            <article class="forecast_card">
-                                <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
-                                <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
-                                </div>
-                                <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
-                            </article>
+                        <article class="forecast_card">
+                            <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                            <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                            </div>
+                            <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                        </article>
 
-                            <article class="forecast_card">
-                                <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
-                                <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
-                                </div>
-                                <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
-                            </article>
-                        </div>
+                        <article class="forecast_card">
+                            <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                            <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                            </div>
+                            <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                        </article>
+                    </div>
                 </template>
             </div>
         </section>
@@ -441,7 +433,9 @@
                                 <div
                                     class="breaking_news_image w-full h-[300px] bg-gray-300 rounded-xl mb-4 overflow-hidden flex justify-center items-center animate-pulse">
                                     <!-- <img src="" alt="news Image" id="breaking_news_image"> -->
-                                     <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                                    <div
+                                        class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                                    </div>
                                 </div>
                                 <p class="w-full bg-gray-200 h-6 rounded animate-pulse mb-2"></p>
                                 <p class="w-full bg-gray-200 h-6 rounded animate-pulse mb-2"></p>
@@ -513,7 +507,9 @@
                             <article class="news_slide_loaders flex justify-center">
                                 <div class="headline_image animate-pulse">
                                     <!-- <img src="" alt=""> -->
-                                    <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                                    <div
+                                        class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                                    </div>
                                 </div>
                                 <div class="headline_title flex flex-col gap-y-1 justify-center">
                                     <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
@@ -526,7 +522,9 @@
                             <article class="news_slide_loaders flex justify-center">
                                 <div class="headline_image animate-pulse">
                                     <!-- <img src="" alt=""> -->
-                                    <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                                    <div
+                                        class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                                    </div>
                                 </div>
                                 <div class="headline_title flex flex-col gap-y-1 justify-center">
                                     <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
@@ -539,7 +537,9 @@
                             <article class="news_slide_loaders flex justify-center">
                                 <div class="headline_image animate-pulse">
                                     <!-- <img src="" alt=""> -->
-                                    <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                                    <div
+                                        class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                                    </div>
                                 </div>
                                 <div class="headline_title flex flex-col gap-y-1 justify-center">
                                     <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
@@ -552,7 +552,9 @@
                             <article class="news_slide_loaders flex justify-center">
                                 <div class="headline_image animate-pulse">
                                     <!-- <img src="" alt=""> -->
-                                    <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                                    <div
+                                        class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                                    </div>
                                 </div>
                                 <div class="headline_title flex flex-col gap-y-1 justify-center">
                                     <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
@@ -754,7 +756,9 @@
                 <template id="category_news_template">
                     <article class="news_card_loaders">
                         <div class="loading_news_image animate-pulse">
-                            <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                            <div
+                                class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                            </div>
                         </div>
                         <div class="grid gap-2">
                             <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
@@ -764,7 +768,9 @@
 
                     <article class="news_card_loaders">
                         <div class="loading_news_image animate-pulse">
-                            <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                            <div
+                                class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                            </div>
                         </div>
                         <div class="grid gap-2">
                             <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
@@ -774,7 +780,9 @@
 
                     <article class="news_card_loaders">
                         <div class="loading_news_image animate-pulse">
-                            <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                            <div
+                                class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                            </div>
                         </div>
                         <div class="grid gap-2">
                             <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
@@ -784,7 +792,9 @@
 
                     <article class="news_card_loaders">
                         <div class="loading_news_image animate-pulse">
-                            <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                            <div
+                                class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                            </div>
                         </div>
                         <div class="grid gap-2">
                             <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
@@ -794,7 +804,9 @@
 
                     <article class="news_card_loaders">
                         <div class="loading_news_image animate-pulse">
-                            <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                            <div
+                                class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                            </div>
                         </div>
                         <div class="grid gap-2">
                             <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
@@ -804,7 +816,9 @@
 
                     <article class="news_card_loaders">
                         <div class="loading_news_image animate-pulse">
-                            <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                            <div
+                                class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                            </div>
                         </div>
                         <div class="grid gap-2">
                             <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
@@ -816,9 +830,240 @@
         </section>
 
         <!-- ======================= CRYPTO SECTION =========================== -->
-        <!-- <section id="crypto">
+        <section id="crypto">
+            <div class="container grid justify-center sm:grid-cols-[470px] md:grid-cols-1">
+                <div class="section_title w-full flex flex-col gap-y-12 sm:text-center lg:flex-row">
+                    <h1 class="text-2xl md:text-3xl w-full font-extrabold text-start">Crypto Prices (CoinGecko)</h1>
+                    <div class="buttons w-full flex justify-between items-center lg:justify-end gap-4 items-centerS mb-4">
+                        <button
+                            class="refreshBtn p-[.3rem_1rem] rounded-lg shadow-sm border border-gray-200">Refresh</button>
+                        <button class="notificationBtn p-[.3rem_1rem] rounded-lg shadow-sm border border-gray-200">Enable
+                            Notifications</button>
+                    </div>
+                </div>
 
-        </section> -->
+                <div class="crypto_cards_grid my-8 p-4 rounded-2xl shadow-lg border border-gray-200 grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 md:py-6 max-h-[600px] xl:max-h-[800px] overflow-y-scroll">
+                    <article class="Crypto_coin_card">
+                        <div class="coin_details">
+                            <div class="image_name">
+                                <div class="image_wrapper">
+                                    <img src="./assets/Images/sky_default_image.avif" alt="image">
+                                </div>
+                                <div>
+                                    <h1 class="coin_name">Bitcoin</h1>
+                                    <h1 class="coin_code">BTC</h1>
+                                </div>
+                            </div>
+
+                            <div class="price">
+                                <h1 class="main_price">$132,566</h1>
+                                <h1 class="growth">1.50% (24h)</h1>
+                            </div>
+                        </div>
+
+                        <div class="alerts">
+                            <div class="input">
+                                <label for="alert" id="alert_label">
+                                    <input type="number" placeholder="Set Alert (USD)" id="alert">
+                                </label>
+                                <button class="set_alert_btn">Set <br> Alert</button>
+                            </div>
+
+                            <div class="market_cap">
+                                <span>Market Cap :</span>
+                                <span>$2,333,444,555,666</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="Crypto_coin_card">
+                        <div class="coin_details">
+                            <div class="image_name">
+                                <div class="image_wrapper">
+                                    <img src="./assets/Images/sky_default_image.avif" alt="image">
+                                </div>
+                                <div>
+                                    <h1 class="coin_name">Bitcoin</h1>
+                                    <h1 class="coin_code">BTC</h1>
+                                </div>
+                            </div>
+
+                            <div class="price">
+                                <h1 class="main_price">$132,566</h1>
+                                <h1 class="growth">1.50% (24h)</h1>
+                            </div>
+                        </div>
+
+                        <div class="alerts">
+                            <div class="input">
+                                <label for="alert" id="alert_label">
+                                    <input type="number" placeholder="Set Alert (USD)" id="alert">
+                                </label>
+                                <button class="set_alert_btn">Set <br> Alert</button>
+                            </div>
+
+                            <div class="market_cap">
+                                <span>Market Cap :</span>
+                                <span>$2,333,444,555,666</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="Crypto_coin_card">
+                        <div class="coin_details">
+                            <div class="image_name">
+                                <div class="image_wrapper">
+                                    <img src="./assets/Images/sky_default_image.avif" alt="image">
+                                </div>
+                                <div>
+                                    <h1 class="coin_name">Bitcoin</h1>
+                                    <h1 class="coin_code">BTC</h1>
+                                </div>
+                            </div>
+
+                            <div class="price">
+                                <h1 class="main_price">$132,566</h1>
+                                <h1 class="growth">1.50% (24h)</h1>
+                            </div>
+                        </div>
+
+                        <div class="alerts">
+                            <div class="input">
+                                <label for="alert" id="alert_label">
+                                    <input type="number" placeholder="Set Alert (USD)" id="alert">
+                                </label>
+                                <button class="set_alert_btn">Set <br> Alert</button>
+                            </div>
+
+                            <div class="market_cap">
+                                <span>Market Cap :</span>
+                                <span>$2,333,444,555,666</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="Crypto_coin_card">
+                        <div class="coin_details">
+                            <div class="image_name">
+                                <div class="image_wrapper">
+                                    <img src="./assets/Images/sky_default_image.avif" alt="image">
+                                </div>
+                                <div>
+                                    <h1 class="coin_name">Bitcoin</h1>
+                                    <h1 class="coin_code">BTC</h1>
+                                </div>
+                            </div>
+
+                            <div class="price">
+                                <h1 class="main_price">$132,566</h1>
+                                <h1 class="growth">1.50% (24h)</h1>
+                            </div>
+                        </div>
+
+                        <div class="alerts">
+                            <div class="input">
+                                <label for="alert" id="alert_label">
+                                    <input type="number" placeholder="Set Alert (USD)" id="alert">
+                                </label>
+                                <button class="set_alert_btn">Set <br> Alert</button>
+                            </div>
+
+                            <div class="market_cap">
+                                <span>Market Cap :</span>
+                                <span>$2,333,444,555,666</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="Crypto_coin_card">
+                        <div class="coin_details">
+                            <div class="image_name">
+                                <div class="image_wrapper">
+                                    <img src="./assets/Images/sky_default_image.avif" alt="image">
+                                </div>
+                                <div>
+                                    <h1 class="coin_name">Bitcoin</h1>
+                                    <h1 class="coin_code">BTC</h1>
+                                </div>
+                            </div>
+
+                            <div class="price">
+                                <h1 class="main_price">$132,566</h1>
+                                <h1 class="growth">1.50% (24h)</h1>
+                            </div>
+                        </div>
+
+                        <div class="alerts">
+                            <div class="input">
+                                <label for="alert" id="alert_label">
+                                    <input type="number" placeholder="Set Alert (USD)" id="alert">
+                                </label>
+                                <button class="set_alert_btn">Set <br> Alert</button>
+                            </div>
+
+                            <div class="market_cap">
+                                <span>Market Cap :</span>
+                                <span>$2,333,444,555,666</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="Crypto_coin_card">
+                        <div class="coin_details">
+                            <div class="image_name">
+                                <div class="image_wrapper">
+                                    <img src="./assets/Images/sky_default_image.avif" alt="image">
+                                </div>
+                                <div>
+                                    <h1 class="coin_name">Bitcoin</h1>
+                                    <h1 class="coin_code">BTC</h1>
+                                </div>
+                            </div>
+
+                            <div class="price">
+                                <h1 class="main_price">$132,566</h1>
+                                <h1 class="growth">1.50% (24h)</h1>
+                            </div>
+                        </div>
+
+                        <div class="alerts">
+                            <div class="input">
+                                <label for="alert" id="alert_label">
+                                    <input type="number" placeholder="Set Alert (USD)" id="alert">
+                                </label>
+                                <button class="set_alert_btn">Set <br> Alert</button>
+                            </div>
+
+                            <div class="market_cap">
+                                <span>Market Cap :</span>
+                                <span>$2,333,444,555,666</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="crypto_alerts my-8 p-4 rounded-2xl shadow-lg border border-gray-200 grid gap-4 max-h-[400px] overflow-y-scroll">
+                    <div class="header flex justify-between items-center border-b border-gray-300 pb-4">
+                        <strong>Active Alerts</strong>
+                        <button class="clearBtn" type="button">Clear All</button>
+                    </div>
+                    <div class="alert-item flex justify-between items-center">
+                        <h1>Bitcoin -- 20$</h1>
+                        <button class="remove">Remove</button>
+                    </div>
+
+                    <div class="alert-item flex justify-between items-center">
+                        <h1>Bitcoin -- 20$</h1>
+                        <button class="remove">Remove</button>
+                    </div>
+
+                    <div class="alert-item flex justify-between items-center">
+                        <h1>Bitcoin -- 20$</h1>
+                        <button class="remove">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- ======================= FOOTER =========================== -->
