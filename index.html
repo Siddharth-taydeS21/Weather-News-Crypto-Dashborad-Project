@@ -76,7 +76,7 @@
         <!-- ======================= WEATHER SECTION =========================== -->
         <section id="weather">
             <div class="weather_container container grid gap-y-12 justify-center">
-                <div class="weather_main_Content grid gap-10 w-full">
+                <div class="weather_main_Content grid gap-10 w-full relative">
                     <div class="weather_title_searchBar grid gap-8 md:gap-4 w-full items-center md:grid-cols-[2fr_3fr]">
                         <div class="grid gap-3">
                             <h3 class="weather_description text-lg font-semibold md:text-2xl md:font-extrabold">
@@ -122,9 +122,7 @@
                                     </span>
                                 </div>
 
-                                <!-- <img src="" alt="image" id="weather_img" class="w-[180px]"> -->
-                                <!-- for response link reference -->
-                                <!-- scr='https://openweathermap.org{icon_code}@2x.png' -->
+
                                 <div
                                     class="temperature text-5xl font-bold md:text-6xl lg:text-7xl text-white text-shadow-xs/50 absolute left-4 bottom-3">
                                     _°</div>
@@ -141,9 +139,23 @@
                             </div>
                         </div>
 
+                        <!-- ========== LOADING TEMPLATE OF MAIN WEATHER CARD (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
+                        <template id="weather_card_template">
+                            <div
+                                class="weather_image_container flex justify-center items-center text-center bg-gray-200 overflow-hidden p-3 rounded-xl relative h-[250px] md:h-[80%] animate-pulse">
+                                <p>Loading...</p>
+                            </div>
+
+                            <div class="detail_badges text-sm flex gap-3 items-end md:h-[20%]">
+                                <span class="max_temp  bg-gray-200 w-1/2 h-8 rounded-2xl animate-pulse"></span>
+                                <span class="min_temp  bg-gray-200 w-1/2 h-8 rounded-2xl animate-pulse"></span>
+                            </div>
+                        </template>
+
                         <div
                             class="weather_highlights_cards grid gap-6 shadow-md/20 border border-gray-100 p-[1.5rem_.74rem] rounded-2xl">
-                            <h1 class="text-center text-3xl lg:text-4xl font-bold">Todays Highlights</h1>
+                            <h1 class="highlights_main_text text-center text-3xl lg:text-4xl font-bold">Todays
+                                Highlights</h1>
                             <div class="highlights_cards_container grid gap-4 grid-cols-2 w-full">
                                 <article class="highlight_card">
                                     <div id="item_image" class="w-20 mx-auto">
@@ -187,11 +199,82 @@
                             </div>
                         </div>
 
+                        <!-- ========== LOADING TEMPLATE OF WEATHER HIGHLIGHTS CARD (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
+                        <template id="weather_highlights_cards_template"
+                            class="weather_highlights_cards hidden grid gap-6 shadow-md/20 border border-gray-100 p-[1.5rem_.74rem] rounded-2xl">
+                            <button id="highlight_loader_btn" type="button"
+                                class="inline-flex justify-center items-center px-4 py-2 mb-2 font-semibold leading-6 text-3xl lg:text-4xl rounded-md text-black  transition ease-in-out duration-150 cursor-not-allowed"
+                                disabled>
+                                <svg class="animate-spin -ml-1 mr-3 size-5 text-black" xmlns="" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                    </path>
+                                </svg>
+                                Loading…
+                            </button>
+                            <div class="highlights_cards_container grid gap-4 grid-cols-2 w-full">
+                                <article class="highlight_card h-[200px] animate-pulse">
+                                    <div id="item_image" class="w-20 mx-auto">
+
+                                    </div>
+                                    <div class="flex flex-col md:flex-row gap-2">
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                    </div>
+                                </article>
+
+                                <article class="highlight_card h-[200px] animate-pulse">
+                                    <div id="item_image" class="w-22 mx-auto">
+
+                                    </div>
+                                    <div class="flex flex-col md:flex-row gap-2">
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                    </div>
+                                </article>
+
+                                <article class="highlight_card h-[200px] animate-pulse">
+                                    <div id="item_image" class="w-18 mx-auto">
+
+                                    </div>
+                                    <div class="flex flex-col md:flex-row gap-2">
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                    </div>
+                                </article>
+
+                                <article class="highlight_card h-[200px] animate-pulse">
+                                    <div id="item_image" class="w-19 mt-2 mx-auto">
+
+                                    </div>
+                                    <div class="flex flex-col md:flex-row gap-2">
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                    </div>
+                                </article>
+                            </div>
+                        </template>
                     </div>
+
+                    <!-- wether error template its not visible on main page -->
+                    <template id="weather_error_template">
+                        <div
+                            class="weather_error bg-red-200 rounded-xl w-[300px] text-center grid gap-y-4 py-8 justify-self-center absolute top-1/2 md:top-[65%] left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl">
+                            <i class="ri-close-circle-fill text-7xl text-red-500"></i>
+                            <h1 class="text-2xl font-bold">Oops</h1>
+                            <p class="font-semibold">Something went wrong, <br> Please try again latter..</p>
+                            <button type="button" id="close_error"
+                                class="w-[40%] bg-red-500 p-[.5rem_1rem] rounded text-white justify-self-center my-2">Dismiss</button>
+                        </div>
+                    </template>
+
                 </div>
 
                 <div class="weather_forecast">
-                    <h1 class="weather_forecast_title my-2 text-3xl md:text-4xl md:mb-4 font-extrabold">
+                    <h1 class="weather_forecast_title my-2 text-3xl md:text-4xl mb-2 md:mb-4 font-extrabold">
                         Next 5 days weather forecast
                     </h1>
                     <div class="weather_forecast_container grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
@@ -205,7 +288,7 @@
                                 <p class="weather_description">description</p>
                             </div>
                         </article>
-                        
+
                         <article class="forecast_card">
                             <p class="card_date">day name</p>
                             <div class="weather_image_container">
@@ -263,6 +346,68 @@
 
                     </div>
                 </div>
+
+                <!-- ========== LOADING TEMPLATE OF WEATHER FORECAST CARDS (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
+                <template id="weather_forecasts_card_template">
+                        <button id="forecast_loader_btn" type="button"
+                            class="inline-flex justify-center items-center px-4 py-2 mb-3 font-semibold leading-6 text-3xl lg:text-4xl rounded-md text-black  transition ease-in-out duration-150 cursor-not-allowed"
+                            disabled>
+                            <svg class="animate-spin -ml-1 mr-3 size-5 text-black" xmlns="" fill="none"
+                                viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4">
+                                </circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                            Loading…
+                        </button>
+
+                        <div class="weather_forecast_container grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                            <article class="forecast_card">
+                                <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                                <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                                </div>
+                                <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                            </article>
+
+                            <article class="forecast_card">
+                                <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                                <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                                </div>
+                                <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                            </article>
+
+                            <article class="forecast_card">
+                                <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                                <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                                </div>
+                                <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                            </article>
+
+                            <article class="forecast_card">
+                                <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                                <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                                </div>
+                                <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                            </article>
+
+                            <article class="forecast_card">
+                                <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                                <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                                </div>
+                                <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                            </article>
+
+                            <article class="forecast_card">
+                                <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                                <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                                </div>
+                                <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                            </article>
+                        </div>
+                </template>
             </div>
         </section>
 
@@ -281,12 +426,31 @@
                             </div>
                             <a href=""
                                 class="breaking_news_title font-bold text-lg transition-all duration-300 hover:underline">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi incidunt voluptatibus quo
-                                voluptatum blanditiis.
+                                Search To get started ....
                             </a>
 
                         </div>
                     </div>
+
+                    <!-- ========== LOADING TEMPLATE FOR BREAKING NEWS CARD (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
+                    <template id="breaking_news_template">
+                        <div class="breaking_news">
+                            <h1 class="braking_news_title">Loading..</h1>
+                            <div
+                                class="breaking_news_content  w-full h-[440px] flex flex-col justify-between bg-white shadow-md border border-gray-200 p-3 rounded-2xl">
+                                <div
+                                    class="breaking_news_image w-full h-[300px] bg-gray-300 rounded-xl mb-4 overflow-hidden flex justify-center items-center animate-pulse">
+                                    <!-- <img src="" alt="news Image" id="breaking_news_image"> -->
+                                     <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                                </div>
+                                <p class="w-full bg-gray-200 h-6 rounded animate-pulse mb-2"></p>
+                                <p class="w-full bg-gray-200 h-6 rounded animate-pulse mb-2"></p>
+                                <p class="w-[60%] bg-gray-200 h-6 rounded animate-pulse "></p>
+
+                            </div>
+                        </div>
+                    </template>
+
 
                     <div class="top_headlines">
                         <h1 class="top_headline_title">Top Headlines</h1>
@@ -343,7 +507,64 @@
                                 </div>
                             </article>
                         </div>
+
+                        <!-- ========== LOADING TEMPLATE FOR TOP HEADLINE CARDS (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
+                        <template id="Top_headlines_template">
+                            <article class="news_slide_loaders flex justify-center">
+                                <div class="headline_image animate-pulse">
+                                    <!-- <img src="" alt=""> -->
+                                    <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                                </div>
+                                <div class="headline_title flex flex-col gap-y-1 justify-center">
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[60%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                </div>
+                            </article>
+
+                            <article class="news_slide_loaders flex justify-center">
+                                <div class="headline_image animate-pulse">
+                                    <!-- <img src="" alt=""> -->
+                                    <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                                </div>
+                                <div class="headline_title flex flex-col gap-y-1 justify-center">
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[60%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                </div>
+                            </article>
+
+                            <article class="news_slide_loaders flex justify-center">
+                                <div class="headline_image animate-pulse">
+                                    <!-- <img src="" alt=""> -->
+                                    <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                                </div>
+                                <div class="headline_title flex flex-col gap-y-1 justify-center">
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[60%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                </div>
+                            </article>
+
+                            <article class="news_slide_loaders flex justify-center">
+                                <div class="headline_image animate-pulse">
+                                    <!-- <img src="" alt=""> -->
+                                    <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                                </div>
+                                <div class="headline_title flex flex-col gap-y-1 justify-center">
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[60%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                </div>
+                            </article>
+                        </template>
                     </div>
+
+
                 </div>
 
 
@@ -404,7 +625,6 @@
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, veniam.
                             </h1>
                         </article>
-
                     </div>
                 </div>
 
@@ -529,6 +749,69 @@
                         </article>
                     </div>
                 </div>
+
+                <!-- ========== LOADING CARDS TEMPLATE FOR TOP CATEGORY NEWS CONTAINER (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
+                <template id="category_news_template">
+                    <article class="news_card_loaders">
+                        <div class="loading_news_image animate-pulse">
+                            <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                        </div>
+                        <div class="grid gap-2">
+                            <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
+                            <p class="bg-gray-300 w-[60%] h-6 rounded animate-pulse"></p>
+                        </div>
+                    </article>
+
+                    <article class="news_card_loaders">
+                        <div class="loading_news_image animate-pulse">
+                            <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                        </div>
+                        <div class="grid gap-2">
+                            <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
+                            <p class="bg-gray-300 w-[60%] h-6 rounded animate-pulse"></p>
+                        </div>
+                    </article>
+
+                    <article class="news_card_loaders">
+                        <div class="loading_news_image animate-pulse">
+                            <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                        </div>
+                        <div class="grid gap-2">
+                            <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
+                            <p class="bg-gray-300 w-[60%] h-6 rounded animate-pulse"></p>
+                        </div>
+                    </article>
+
+                    <article class="news_card_loaders">
+                        <div class="loading_news_image animate-pulse">
+                            <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                        </div>
+                        <div class="grid gap-2">
+                            <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
+                            <p class="bg-gray-300 w-[60%] h-6 rounded animate-pulse"></p>
+                        </div>
+                    </article>
+
+                    <article class="news_card_loaders">
+                        <div class="loading_news_image animate-pulse">
+                            <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                        </div>
+                        <div class="grid gap-2">
+                            <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
+                            <p class="bg-gray-300 w-[60%] h-6 rounded animate-pulse"></p>
+                        </div>
+                    </article>
+
+                    <article class="news_card_loaders">
+                        <div class="loading_news_image animate-pulse">
+                            <div class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin"></div>
+                        </div>
+                        <div class="grid gap-2">
+                            <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
+                            <p class="bg-gray-300 w-[60%] h-6 rounded animate-pulse"></p>
+                        </div>
+                    </article>
+                </template>
             </div>
         </section>
 
@@ -585,7 +868,7 @@
         </div>
     </footer>
     <!-- ======================= MAIN JS =========================== -->
-    <script src="./assets/JS/main.js"></script>
+    <script type="module" src="./assets/JS/main.js"></script>
 </body>
 
 </html>

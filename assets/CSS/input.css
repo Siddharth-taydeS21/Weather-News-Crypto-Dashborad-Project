@@ -81,33 +81,34 @@
     }
     
     .forecast_card .weather_container {
-        @apply flex justify-between items-end font-semibold;
+        @apply flex justify-between items-end  font-semibold;
     }
     
     .forecast_card .weather_container .main_temp {
-        @apply text-2xl md:text-3xl lg:text-4xl;
+        @apply text-2xl md:text-2xl lg:text-3xl;
     }
     
     .forecast_card .weather_container .weather_description {
-        @apply  text-sm;
+        @apply  text-[12px] xl:text-[15px];
     }
 
     /* =========================== NEWS SECTION REUSABLE CLASSES ========================== */
 
     .headline_title, .news_title{
-        @apply flex items-center;
+        @apply flex;
     }
 
-    .news_slide{
+    .news_slide,
+    .news_slide_loaders{
         @apply  flex gap-4 w-full h-[120px] lg:h-[150px] overflow-hidden bg-gray-100 rounded-lg;
     }
 
     .headline_image{
-        @apply  w-4/10 bg-gray-400 rounded-lg;
+        @apply  w-4/10 bg-gray-400 rounded-lg flex justify-center items-center;
     }
 
     .headline_title{
-        @apply w-6/10;
+        @apply w-6/10 flex items-center;
     }
 
     .news_section_title,
@@ -120,18 +121,20 @@
         @apply mt-18 md:mt-22;
     }
 
-    .news_card {
+    .news_card,
+    .news_card_loaders {
         @apply  bg-gray-100 p-3 rounded-2xl flex flex-col gap-4;
     }
 
-    .news_card .news_image{
-        @apply  w-full max-md:h-[170px] md:h-[220px] bg-gray-400 rounded-xl overflow-hidden;
+    .news_card .news_image,
+    .loading_news_image{
+        @apply  w-full max-md:h-[170px] md:h-[220px] flex justify-center items-center bg-gray-400 rounded-xl overflow-hidden;
     }
 
     .business_news_container,
     .tech_news_container,
     .sports_news_container{
-        @apply bg-white p-4 rounded-3xl shadow-md border border-gray-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] xl:grid-cols-4 gap-4 justify-center max-md:h-[600px] overflow-y-scroll;
+        @apply bg-white p-4 rounded-3xl shadow-md border border-gray-200 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] xl:grid-cols-4 gap-4 justify-center md:max-h-[600px] overflow-y-scroll;
     }
 
     /* =========================== FOOTER SECTION REUSABLE CLASSES ========================== */
@@ -145,5 +148,9 @@
 
     .footer_list li:not(:first-child){
         @apply text-gray-600 transition-colors duration-400 hover:text-black;
+    }
+
+    .spinner{
+        @apply hidden;
     }
 }
