@@ -21,7 +21,7 @@
     }
 
     header {
-        @apply w-full p-2 fixed backdrop-blur-sm z-100;
+        @apply w-full p-2 fixed z-100 bg-gray-50 shadow-2xs;
     }
 
     section {
@@ -40,7 +40,7 @@
         @apply h-full w-full;
     }
 
-    a {
+    a:not(.nav_link a, .logo, .clearBtn, .social_links)  {
         @apply transition duration-300 hover:underline font-semibold;
     }
 }
@@ -55,11 +55,11 @@
     }
 
     .nav_link {
-        @apply text-black font-semibold transition-colors duration-300 hover:text-blue-500;
+        @apply text-black font-semibold;
     }
 
     .nav_link a {
-        @apply transition-colors duration-200 hover:text-blue-500;
+        @apply transition-colors duration-200 font-medium hover:text-blue-400;
     }
 
     /* =========================== WEATHER SECTION REUSABLE CLASSES ========================== */
@@ -113,7 +113,7 @@
     }
 
     .headline_image {
-        @apply w-4/10 bg-gray-400 rounded-lg flex justify-center items-center;
+        @apply w-4/10 bg-gray-300 rounded-lg flex justify-center items-center;
     }
 
     .headline_title {
@@ -137,7 +137,7 @@
 
     .news_card .news_image,
     .loading_news_image {
-        @apply w-full max-md:h-[170px] md:h-[220px] flex justify-center items-center bg-gray-400 rounded-xl overflow-hidden;
+        @apply w-full max-md:h-[170px] md:h-[220px] flex justify-center items-center bg-gray-300 rounded-xl overflow-hidden;
     }
 
     .business_news_container,
@@ -153,11 +153,11 @@
     }
 
     .coin_details {
-        @apply w-full flex justify-between items-center md:mb-8;
+        @apply w-full flex justify-between items-center mb-4 sm:mb-8;
     }
 
     .image_wrapper {
-        @apply size-[50px] rounded-full overflow-hidden;
+        @apply size-[50px] bg-gray-400 rounded-full overflow-hidden;
     }
 
     .image_name {
@@ -169,12 +169,8 @@
         @apply text-xl font-semibold;
     }
 
-    .growth {
-        @apply text-green-600;
-    }
-
     .price {
-        @apply text-start;
+        @apply text-end;
     }
 
     .alerts {
@@ -187,7 +183,7 @@
     }
 
     #alert {
-        @apply bg-gray-200 p-[.7rem_1rem] rounded;
+        @apply bg-gray-200 p-[.7rem_1rem] rounded w-[70%];
     }
 
     .set_alert_btn{
@@ -213,5 +209,9 @@
 
     .remove, .clearBtn {
         @apply bg-gray-50 p-[.4rem_1rem] rounded-lg shadow-sm border border-gray-100;
+    }
+
+    .social_links{
+        @apply text-3xl text-gray-500 transition-colors hover:text-gray-700 duration-200;
     }
 }

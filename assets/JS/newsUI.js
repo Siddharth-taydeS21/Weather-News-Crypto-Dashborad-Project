@@ -210,7 +210,7 @@ const addNextCategoryNews = (obj, HTMLcontainer, str) => {
                                 </a>
                             </article>
             `;
-        })
+    })
     // USER CAN ONLY USE THE SHOW MORE BUTTON 5 TIMES AFTER THAT HW WILL NOT SEE SHOW MORE BTN....
     if (str === 'sports' && NewsClicks.SportsCategoryNewsClicks >= 4) {
         return;
@@ -234,7 +234,20 @@ const addCategoryNews = (obj, HtmlContainer, category) => {
     // ============= USING FETCHED DATA TO RENDER ON HTML ==============
 
     HtmlContainer.innerHTML = '';
-
+    console.log(obj)
+    if (obj.results.length === 0) {
+        console.log(obj.results.length)
+        HtmlContainer.innerHTML = `
+                                <div class="text-xl lg:col-span-4 font-semibold text-center grid justify-center gap-2 my-20">
+                                    <div
+                                        class="icon_wrapper border p-7 text-3xl size-[70px] justify-self-center flex justify-center items-center rounded-full border-gray-200 shadow-sm mb-4">
+                                        <i class="ri-error-warning-line text-3xl"></i>
+                                    </div>
+                                     0 News Articles Found For ${category.charAt(0).toUpperCase() + category.slice(1)} category in this City, <br> Please Try after some time..
+                                </div>`;
+                                     
+        return;
+    }
     obj.results.forEach((news) => {
         if (news.duplicate) return;
 
@@ -248,11 +261,13 @@ const addCategoryNews = (obj, HtmlContainer, category) => {
                         </a>
                     </article>
     `;
-})
+    })
+
 
     HtmlContainer.innerHTML += `
                     <div class="rounded-2xl flex justify-center items-center">
                         <button class="bg-blue-400 h-10 w-40 rounded-2xl flex justify-center items-center" id="${category}_show_moreBtn">Show More..>></button>
                     </div>
 `
+
 }

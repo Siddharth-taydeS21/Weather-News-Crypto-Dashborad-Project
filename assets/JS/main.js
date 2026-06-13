@@ -1,5 +1,8 @@
 // ===================== IMPORTS & EXPORTS ==================
-import { getGeoLocation, getWeatherDetails, WeatherForecastObjects, getUserLocation } from './wetherAPI.js'
+import { getGeoLocation } from './wetherAPI.js'
+import { fetchData } from './cryptoAPI.js';
+import { clearBtnTextChange } from "./utils.js";
+
 //  ====== SHOW MOBILE NAV MENU ON MENU CLICK ======= 
 const toggle = document.getElementById('toggle_button');
 const nav_menu = document.querySelector('.nav_menu');
@@ -21,3 +24,5 @@ nav_links.forEach(link => {
 closeBtn.addEventListener('click', toggleLeft);
 
 getGeoLocation();
+fetchData();
+clearBtnTextChange();

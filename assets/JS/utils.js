@@ -1,5 +1,6 @@
 // ============================= EXPORTS AND IMPORTS ==============================
-export { forMatSunTime, turnCateText, getNewsImageSrc, renderNewsImg, getWeatherImageSrc, getWindSpeed };
+export { forMatSunTime, turnCateText, getNewsImageSrc, renderNewsImg, getWeatherImageSrc, getWindSpeed, return2decimals, returnGrowthColor, clearBtnTextChange };
+import { clearAlertsBtn, alertsContainer } from "./cryptoStates.js";
 const forMatSunTime = (unixSeconds, offsetSec) => {
     const date = new Date((unixSeconds + offsetSec) * 1000);
     const hours = date.getUTCHours();
@@ -81,41 +82,34 @@ const getWindSpeed = (speed) => {
     return `${Math.round(milesPerHours)} mph <br> (${Math.round(km_perHours)} km/h)`
 }
 
+const return2decimals = (num) =>  Math.round(num * 100) / 100;
 
+const returnGrowthColor = (num) => {
+    if (num > 0) {
+        return `<h1 class="growth text-green-600">+${return2decimals(num)}% (24h)</h1>`
+    }else if(num === 0){
+        return `<h1 class="growth">${num}% (24h)</h1>`
+    }else{
+        return `<h1 class=" text-red-600">${num.toFixed(2)}% (24h)</h1>`;
+    }
+}
 
-// const showLoader = (HtmlContainer) => {
-//     const images = HtmlContainer.querySelectorAll('.news-image');
-//     if (images) {
-//         images.forEach(img => {img.addEventListener("load", () => {
-//                 parent = img.parentElement;
-//                 const spinner = parent.querySelector('.spinner');
-//                 spinner.classList.add("hidden");
-//                 img.style.opacity = '100%';
-//             })
-//         });
-//     }
-
-//     const spinners = HtmlContainer.querySelectorAll('.spinner');
-//     if (spinners) {
-//         spinners.forEach(spinner => {
-//             spinner.classList.add("hidden");
-//             // console.log(spinner)
-//         })
-//     }
-
-
-
-//     // const image = document.querySelectorAll('.news-image');
-//     // const spinner = document.querySelector('.spinner');
-
-//     // if (image) {
-//     //     image.addEventListener("load", () => {
-//     //         image.classList.replace('opacity-0', 'opacity-100');
-//     //         spinner.classList.add("hidden");
-//     //     });
-
-//     //     image.addEventListener("error", () => {
-//     //         spinner.classList.add("hidden");
-//     //     });
-//     // }
-// }
+const clearBtnTextChange = () => {
+    if(alertsContainer.children.length === 0){
+        clearAlertsBtn.textContent = 'Add Alerts';
+        const el = document.createElement('div');
+        el.classList.add('no_alerts_div', 'w-full', 'grid', 'justify-center', 'gap-2', 'text-center', 'my-4')
+        el.innerHTML = `
+        <h1 class="font-semibold">No Alerts added</h1>
+        <p>Add an alert to preview</p>
+        `
+        alertsContainer.append(el);
+    }else if(alertsContainer.children.length >= 1){
+        clearAlertsBtn.textContent = 'Clear All';
+        clearAlertsBtn.removeAttribute('href')
+        const noAlertsDiv = alertsContainer.querySelector('.no_alerts_div');
+        if (noAlertsDiv) {
+            noAlertsDiv.remove();
+        }
+    }
+}
