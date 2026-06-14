@@ -4,7 +4,8 @@ import { isMainWeatherLoading, addWeatherDetails, addTodaysHighlights, addWeathe
 import { forMatSunTime } from "./utils.js";
 import { getNews, getCategoryNews} from "./newsAPI.js";
 // ================================= WEATHER API AND DATA FETCHING LOGIC ================================
-const WEATHER_API_KEY = 'aad3ff0d1617a1925037afb51c4feefc';
+
+const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 // ==== Getting city details for fetching weather data =====
 const userInput = document.getElementById('search_input');
@@ -29,6 +30,8 @@ const WeatherForecastObjects = (obj) => {
 
 const getWeatherDetails = async (obj) => {
     const { lat, lon, cityName, WEATHER_API_KEY } = obj;
+    const coordinates = [lat, lon, cityName, WEATHER_API_KEY];
+    localStorage.setItem('Weather_coordinates', JSON.stringify(coordinates));
 
     // ================ HANDLING LOADING STATES ====================
     isMainWeatherLoading('load');

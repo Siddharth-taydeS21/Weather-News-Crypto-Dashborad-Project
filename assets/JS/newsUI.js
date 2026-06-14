@@ -1,7 +1,7 @@
 // ============================= EXPORTS AND IMPORTS ==============================
 export { isNewsSectionLoading, isCategoryNewsLoading, addTopHeadlines, addBreakingNews, addNextCategoryNews, addCategoryNews };
 import { renderNewsImg, turnCateText } from "./utils.js";
-import { NEWS_API_KEY, NewsClicks } from "./newsAPI.js";
+import { NewsClicks, NEWS_API_KEY } from "./newsAPI.js";
 import { errorSvg } from "./wetherUI.js"
 // ================================ LOADING STATES UI LOGIC FOR NEWS SECTION =================================
 const topHeadlinesContainer = document.querySelector('.top_headlines_container');

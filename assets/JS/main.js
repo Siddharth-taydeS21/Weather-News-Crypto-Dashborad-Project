@@ -1,5 +1,5 @@
 // ===================== IMPORTS & EXPORTS ==================
-import { getGeoLocation } from './wetherAPI.js'
+import { getGeoLocation, getWeatherDetails } from './wetherAPI.js'
 import { fetchData } from './cryptoAPI.js';
 import { clearBtnTextChange } from "./utils.js";
 
@@ -23,6 +23,23 @@ nav_links.forEach(link => {
 })
 closeBtn.addEventListener('click', toggleLeft);
 
+
+const getLocalStorageCoordinates = () => {
+    const coordinates = JSON.parse(localStorage.getItem('Weather_coordinates'));
+    if (!coordinates) {
+        return;
+    }else{
+        //lat, lon, cityName, WEATHER_API_KEY
+        const lat = coordinates[0];
+        const lon = coordinates[1];
+        const cityName = coordinates[2];
+        const WEATHER_API_KEY = coordinates[3];
+
+        getWeatherDetails({lat, lon, cityName, WEATHER_API_KEY});
+    }
+}
+
+getLocalStorageCoordinates();
 getGeoLocation();
 fetchData();
 clearBtnTextChange();

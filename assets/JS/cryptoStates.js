@@ -1,8 +1,8 @@
-export { CRYPTO_API_KEY, notificationBtn, refreshBtn, alertsContainer, clearAlertsBtn, Coins, alerts };
+export { notificationBtn, refreshBtn, alertsContainer, clearAlertsBtn, Coins, alerts, CRYPTO_API_KEY };
 import { renderAlertList } from "./cryptoUI.js";
 import { fetchData } from "./cryptoAPI.js";
 
-const CRYPTO_API_KEY = 'CG-thCGGkV4ePKAt1xzwSibm9HA'
+const CRYPTO_API_KEY = import.meta.env.VITE_CRYPTO_API_KEY;
 
 const refreshBtn = document.querySelector('.refreshBtn');
 const notificationBtn = document.querySelector('.notificationBtn');

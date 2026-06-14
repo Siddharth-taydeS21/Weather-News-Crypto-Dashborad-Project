@@ -1,8 +1,9 @@
 // ============================= EXPORTS AND IMPORTS ==============================
-export { getNews, getCategoryNews, fetchNextPage, NEWS_API_KEY, NewsClicks };
+export { getNews, getCategoryNews, fetchNextPage, NewsClicks, NEWS_API_KEY };
 import { isCategoryNewsLoading, isNewsSectionLoading, addBreakingNews, addTopHeadlines, addNextCategoryNews, addCategoryNews } from "./newsUI.js";
 
-const NEWS_API_KEY = 'pub_ba4fb2f46c3342668ac6a7c7fb810055';
+const NEWS_API_KEY = import.meta.env.VITE_NEWS_API_KEY;
+
 
 // Global Variable for avoiding the misuse of show more button clicks
 const NewsClicks = {
