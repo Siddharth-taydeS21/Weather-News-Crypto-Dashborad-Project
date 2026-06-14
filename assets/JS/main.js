@@ -39,7 +39,7 @@ const getLocalStorageCoordinates = () => {
     }
 }
 
-//getLocalStorageCoordinates();
-//getGeoLocation();
-//fetchData();
-//clearBtnTextChange();
+getLocalStorageCoordinates();
+getGeoLocation();
+fetchData();
+clearBtnTextChange();
