@@ -103,7 +103,8 @@
 
                         <div
                             class="main_weather_card flex flex-col justify-between gap-y-3 shadow-md/20 border border-gray-100 p-3 md:p-4 rounded-2xl">
-                            <div
+                           
+                             <div 
                                 class="weather_image_container bg-black flex flex-col gap-y-3 justify-between overflow-hidden p-3 rounded-xl relative h-[250px] md:h-[80%]">
                                 <img src="/assets/Images/sky_default_image.avif" alt="image"
                                     class="absolute top-0 left-0 h-full w-full bg-center bg-cover bg-no-repeat mask-b-from-60% mask-b-to-100%">
@@ -130,7 +131,7 @@
                             <div class="detail_badges text-sm flex gap-3 items-end md:h-[20%]">
                                 <span class="max_temp bg-red-200 px-2 py-1 rounded-2xl">MAX-TEMP: 00</span>
                                 <span class="min_temp bg-blue-200 px-2 py-1 rounded-2xl">MIN-TEMP: 00</span>
-                            </div>
+                            </div> 
                         </div>
 
                         <!-- ========== LOADING TEMPLATE OF MAIN WEATHER CARD (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
@@ -148,6 +149,7 @@
 
                         <div
                             class="weather_highlights_cards grid gap-6 shadow-md/20 border border-gray-100 p-[1.5rem_.74rem] rounded-2xl">
+                            
                             <h1 class="highlights_main_text text-center text-3xl lg:text-4xl font-bold">Todays
                                 Highlights</h1>
                             <div class="highlights_cards_container grid gap-4 grid-cols-2 w-full">
@@ -255,14 +257,19 @@
 
                     <!-- wether error template its not visible on main page -->
                     <template id="weather_error_template">
-                        <div
-                            class="weather_error bg-red-200 rounded-xl w-[300px] text-center grid gap-y-4 py-8 justify-self-center absolute top-1/2 md:top-[65%] left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl">
-                            <i class="ri-close-circle-fill text-7xl text-red-500"></i>
-                            <h1 class="text-2xl font-bold">Oops</h1>
-                            <p class="font-semibold">Something went wrong, <br> Please try again latter..</p>
-                            <button type="button" id="close_error"
-                                class="w-[40%] bg-red-500 p-[.5rem_1rem] rounded text-white justify-self-center my-2">Dismiss</button>
-                        </div>
+                        <article class="col-span-2 lg:col-span-3 text-center py-20 grid gap-2">
+                            <div class="error_image">
+                                <div
+                                    class="icon_wrapper border p-7 size-[70px] justify-self-center flex justify-center items-center rounded-full border-gray-200 shadow-sm mb-4">
+                                    <i class="ri-cloud-off-line text-3xl"></i>
+                                </div>
+                                <p class="font-semibold text-2xl">Error 404</p>
+                            </div>
+                            <div class="error_massage">
+                                <h1>Cloud not Load Details</h1>
+                                <small>(General error of poor network)</small>
+                            </div>
+                        </article>
                     </template>
 
                 </div>
@@ -407,7 +414,7 @@
         <section id="news" class="bg-gray-100">
             <div class="news_container container grid justify-center sm:grid-cols-[470px] md:grid-cols-1 gap-12"
                 id="main_news">
-                <div class="breaking_news_container grid gap-6 gap-y-10 md:grid-cols-[4fr_3fr]">
+                <div class="breaking_news_container grid  gap-6 gap-y-10 md:grid-cols-[4fr_3fr]">
                     <div class="breaking_news">
                         <h1 class="braking_news_title">Breaking News</h1>
                         <div
@@ -422,6 +429,7 @@
                             </a>
 
                         </div>
+                        
                     </div>
 
                     <!-- ========== LOADING TEMPLATE FOR BREAKING NEWS CARD (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
@@ -445,12 +453,13 @@
                         </div>
                     </template>
 
-                    <div class="top_headlines">
+                    <div class="top_headlines flex flex-col justify-center">
                         <h1 class="top_headline_title">Top Headlines</h1>
 
                         <div
-                            class="top_headlines_container grid gap-4 max-h-[440px] overflow-y-scroll bg-white shadow-md border border-gray-200 p-3 rounded-2xl">
+                            class="top_headlines_container max-h-[440px] h-[440px] overflow-y-scroll grid gap-4 justify-self-stretch bg-white shadow-md border border-gray-200 p-3 rounded-2xl">
                             <article class="news_slide">
+
                                 <div class="headline_image">
                                     <i class="ri-newspaper-line text-5xl text-gray-500">..</i>
                                 </div>
@@ -510,7 +519,6 @@
                                 </div>
                             </article>
                         </div>
-
                         <!-- ========== LOADING TEMPLATE FOR TOP HEADLINE CARDS (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
                         <template id="Top_headlines_template">
                             <article class="news_slide_loaders flex justify-center">
@@ -921,7 +929,23 @@
                         </template>
 
                         <template id="Error_crypto_card_template">
-                            <article class="col-span-2 lg:col-span-3 text-center py-20 grid gap-2">
+                            <article class="col-span-2 md:col-span-3 lg:col-span-4 text-center py-20 flex flex-col gap-2">
+                                <div class="error_image">
+                                    <div
+                                        class="icon_wrapper border p-7 size-[70px] justify-self-center flex justify-center items-center rounded-full border-gray-200 shadow-sm mb-4">
+                                        <i class="ri-cloud-off-line text-3xl"></i>
+                                    </div>
+                                    <p class="font-semibold text-2xl">Error 404</p>
+                                </div>
+                                <div class="error_massage">
+                                    <h1>Cloud not Load Details</h1>
+                                    <small>(General error of poor network)</small>
+                                </div>
+                            </article>
+                        </template>
+
+                        <template id="Error_TopHeadlines_card_template">
+                            <article class="text-center py-20 flex flex-col gap-2">
                                 <div class="error_image">
                                     <div
                                         class="icon_wrapper border p-7 size-[70px] justify-self-center flex justify-center items-center rounded-full border-gray-200 shadow-sm mb-4">
@@ -953,50 +977,57 @@
     </main>
 
     <!-- ======================= FOOTER =========================== -->
-    <footer class="py-14 md:px-8 bg-gray-100">
-        <div class="container grid gap-y-12">
-            <div class="footer_title grid gap-y-4">
-                <a href="#" class="logo text-black text-2xl font-semibold md:text-3xl" id="logo">DASHBOARD</a>
-                <h1 class="title text-xl font-bold">Get your all news related thoughts fullfil here</h1>
+    <footer class="footer w-full p-8 grid gap-10 bg-gray-100">
+        <div class="container grid gap-y-12 justify-center sm:grid-cols-[470px] md:grid-cols-2">
+            <div class="footer_data">
+                <div class="footer_info grid gap-4 mb-4">
+                        <a href="#" class="logo text-black text-xl font-semibold md:text-2xl" id="logo">DASHBOARD</a>
+
+                    <p class="footer_description">
+                        Get your all news related thoughts <br> fullfil here..
+                    </p>
+                </div>
+
+                <div class="footer_socials flex gap-x-3">
+                    <a href="https://www.linkedin.com/in/siddharth-tayde-7a9547318/" target="_blank" class="social_link">
+                        <i class="ri-linkedin-box-fill"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/siddhartxthetic/" target="_blank" class="social_link">
+                        <i class="ri-instagram-fill"></i>
+                    </a>
+
+                    <a href="https://x.com/SiddharthS21" target="_blank" class="social_link">
+                        <i class="ri-twitter-x-line"></i>
+                    </a>
+
+                    <a href="https://github.com/Siddharth-taydeS21" target="_blank" class="social_link">
+                        <i class="ri-github-fill"></i>
+                    </a>
+                </div>
             </div>
 
-            <div class="footer_grid grid gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                <ul class="footer_list">
-                    <li class="footer_list_title">Solutions</li>
-                    <li>Marketing</li>
-                    <li>Analytics</li>
-                    <li>Automation</li>
-                    <li>Commerce</li>
-                    <li>Insights</li>
-                </ul>
+            <div class="footer_content grid gap-12 md:justify-end">
+                <div class="footer_newsLatter xl:w-[350px] text-center">
+                    <h3 class="footer_title font-semibold mb-2">Stay Connected</h3>
 
-                <ul class="footer_list">
-                    <li class="footer_list_title">Support</li>
-                    <li>Submit ticket</li>
-                    <li>Documentation</li>
-                    <li>Guides</li>
-                </ul>
+                    <p class="transition-colors duration-300 text-sm">
+                        Questions or feedback? we'd <br> love to hear from you.
+                    </p>
 
-                <ul class="footer_list">
-                    <li class="footer_list_title">Company</li>
-                    <li>About</li>
-                    <li>Blog</li>
-                    <li>Jobs</li>
-                    <li>Press</li>
-                </ul>
+                    <form action="" class="footer_form mt-8 bg-white w-full flex p-3 rounded-md shadow-sm xs:w-[300px] xl:w-[350px]">
+                        <input type="email" class="footer_input w-full bg-transparent pl-2 text-title-color" placeholder="Email address">
 
-                <ul class="footer_list">
-                    <li class="footer_list_title">Legal</li>
-                    <li>Terms of service</li>
-                    <li>Privacy policy</li>
-                    <li>License</li>
-                </ul>
+                        <button class="footer_button size-[35px] rounded-md border border-gray-200 text-xl font-bold shadow-sm transition-colors cursor-pointer">
+                            <i class="ri-arrow-right-s-line"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
-
-            <hr class="text-gray-400">
-
-            <span class="text-sm text-gray-500 text-center">© 2026 All rights reserved.</span>
         </div>
+        <hr class="text-gray-400">
+
+        <span class="text-sm text-gray-500 text-center">© 2026 All rights reserved.</span>
     </footer>
     <!-- ======================= MAIN JS =========================== -->
     <script type="module" src="./assets/JS/main.js"></script>
