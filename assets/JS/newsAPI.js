@@ -54,7 +54,7 @@ const fetchNextPage = (str1, str, HtmlContainer, obj) => {
                 fetchNextPage(str1, str, HtmlContainer, News_Data);
 
             } catch (error) {
-                alert("Could not load data. Please try again later.");
+                //alert("Could not load data. Please try again later.");
                 console.log('There was en error: Not found!', error)
                 isCategoryNewsLoading(HtmlContainer, 'error', 'HTMLcontainer-NotEmpty')
             }
@@ -84,7 +84,7 @@ const getCategoryNews = async (str, category, HtmlContainer) => {
 
 
     } catch (error) {
-        alert("Could not load data. Please try again later.");
+        //alert("Could not load data. Please try again later.");
         console.log('There was en error: Not found!', error);
         isCategoryNewsLoading(HtmlContainer, 'error', 'HTMLcontainer-Empty')
     }
@@ -107,7 +107,7 @@ const getNews = async (str) => {
         addTopHeadlines(str, data, nextPage);
 
     } catch (error) {
-        alert("Could not load data. Please try again later.");
+        //alert("Could not load data. Please try again later.");
         console.log('There was en error: Not found!', error);
         isNewsSectionLoading('error');
     }

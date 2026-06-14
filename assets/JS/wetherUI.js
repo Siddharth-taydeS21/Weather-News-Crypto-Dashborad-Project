@@ -4,6 +4,7 @@ import { getWeatherImageSrc, getWindSpeed } from "./utils.js";
 // =================== LOADING STATES HTML FUNCTIONS FOR UI (WEATHER SECTION) =======================
 const MainWeatherCard = document.querySelector('.main_weather_card');
 const MainWeatherCardTemplate = document.getElementById('weather_card_template');
+const ErrorTemplate = document.getElementById('weather_error_template');
 
 const weatherHighlightsContainer = document.querySelector('.weather_highlights_cards');
 const weatherHighlightsContainerTemplate = document.getElementById('weather_highlights_cards_template');
@@ -35,52 +36,18 @@ const isMainWeatherLoading = (str) => {
         const ForeCatsContainerLoader = ForeCatsContainerTemplate.content.cloneNode(true);
         ForeCatsContainer.append(ForeCatsContainerLoader);
     } else if (str === 'error') {
-        const WeatherLoadingImage = document.querySelector('.weather_image_container');
-        const loadingBtnHighlights = document.getElementById('highlight_loader_btn');
-        const loadingBtnForecast = document.getElementById('forecast_loader_btn');
+        MainWeatherCard.innerHTML = ``;
+        MainWeatherCard.append(
+            ErrorTemplate.content.cloneNode(true)
+        );
 
-        WeatherLoadingImage.innerHTML = `
-        <p>
-        ${errorSvg}
-        Error: Wether details not Available
-        </p>
-        `;
+        weatherHighlightsContainer.innerHTML = '';
+        weatherHighlightsContainer.append(
+            ErrorTemplate.content.cloneNode(true)
+        )
 
-        loadingBtnHighlights.style.fontSize = '20px'
-        loadingBtnHighlights.innerHTML = `
-        <p>
-        ${errorSvg}
-        Error: Wether details not Available
-        </p>
-        `;
-
-        loadingBtnForecast.style.fontSize = '20px'
-        loadingBtnForecast.innerHTML = `
-        <p>
-        ${errorSvg}
-        Error: Wether details not Available
-        </p>
-        `;
-    } else if (str === 'clear') {
-        MainWeatherCard.querySelector('.weather_image_container').classList.remove('animate-pulse');
-        MainWeatherCard.querySelector('.min_temp').classList.remove('animate-pulse');
-        MainWeatherCard.querySelector('.max_temp').classList.remove('animate-pulse');
-
-        const highlightCards = weatherHighlightsContainer.querySelectorAll('.highlight_card');
-        highlightCards.forEach(card => {
-            card.classList.remove('animate-pulse');
-            card.querySelectorAll('p').forEach(p => p.classList.remove('animate-pulse'));
-        })
-
-        const forecastCards = ForeCatsContainer.querySelectorAll('.forecast_card');
-        forecastCards.forEach(card => {
-            card.classList.remove('animate-pulse');
-            card.querySelectorAll('p').forEach(p => p.classList.remove('animate-pulse'))
-            card.querySelectorAll('.weather_image_container').forEach(elem => elem.classList.remove('animate-pulse'));
-            card.querySelectorAll('.weather_container').forEach(elem => elem.classList.remove('animate-pulse'));
-        })
-
-    }
+        ForeCatsContainer.innerHTML = '';
+    } 
 }
 
 // =========== DISPLAYING DATA ON MAIN WEATHER DETAILS CARD  ===========

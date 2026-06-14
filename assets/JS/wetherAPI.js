@@ -36,7 +36,7 @@ const getWeatherDetails = async (obj) => {
     // ================ HANDLING LOADING STATES ====================
     isMainWeatherLoading('load');
     
-    // console.log(lat, lon, cityName, WEATHER_API_KEY);
+    // // console.log(lat, lon, cityName, WEATHER_API_KEY);
     try {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`)
         if (!response.ok) {
@@ -44,7 +44,7 @@ const getWeatherDetails = async (obj) => {
         }
 
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
 
         //GETTING DATA FOR MAIN WEATHER CARD (.main_weather_card) :-
         const displayCityName = data.city.name;
@@ -93,9 +93,6 @@ const getWeatherDetails = async (obj) => {
         // SHOW WEATHER ERROR ON UI
         isMainWeatherLoading('error');
 
-    } finally {
-        // CLEAR LOADING STATES
-        isMainWeatherLoading('clear');
     }
 }
 

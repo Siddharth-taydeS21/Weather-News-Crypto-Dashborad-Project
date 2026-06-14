@@ -6,6 +6,9 @@ import { errorSvg } from "./wetherUI.js"
 // ================================ LOADING STATES UI LOGIC FOR NEWS SECTION =================================
 const topHeadlinesContainer = document.querySelector('.top_headlines_container');
 
+const ErrorTemplate = document.getElementById('Error_crypto_card_template');
+const TopHeadlinesErrorTemplate = document.getElementById('Error_TopHeadlines_card_template');
+
 const isNewsSectionLoading = (str) => {
     if (str === 'load') {
         // breaking news loading State --
@@ -22,30 +25,15 @@ const isNewsSectionLoading = (str) => {
         topHeadlinesContainer.append(loader2);
     } else if (str === 'error') {
         const BreakingNewsCard = document.querySelector('.breaking_news_content')
-        const newsImage = BreakingNewsCard.querySelector('.breaking_news_image');
-        newsImage.classList.remove('animate-pulse');
-        newsImage.innerHTML = `${errorSvg}`;
-        BreakingNewsCard.querySelectorAll('p').forEach(p => p.remove())
+        BreakingNewsCard.innerHTML = '';
+        BreakingNewsCard.append(
+            ErrorTemplate.content.cloneNode(true)
+        );
 
-        const warning = document.createElement('h1');
-        warning.classList.add('flex', 'flex-col', 'items-center', '-translate-y-[25px]')
-        warning.innerHTML = `
-        ${errorSvg}
-        Error: News details not Available
-        `
-        BreakingNewsCard.append(warning);
-
-        const HeadlinesLoaders = topHeadlinesContainer.querySelectorAll('.news_slide_loaders')
-        HeadlinesLoaders.forEach(card => {
-            card.querySelector('.headline_image').classList.remove('animate-pulse');
-            const tilesBars = card.querySelector('.headline_title');
-            tilesBars.querySelectorAll('p').forEach(p => p.remove());
-            tilesBars.classList.remove('items-center')
-            tilesBars.innerHTML = `
-            ${errorSvg}
-            <p>Data is not available..</p>
-            `
-        })
+        topHeadlinesContainer.innerHTML = '';
+        topHeadlinesContainer.append(
+            ErrorTemplate.content.cloneNode(true)
+        );
     }
 };
 
@@ -61,40 +49,15 @@ const isCategoryNewsLoading = (HtmlContainer, str, str2) => {
     }
     else if (str === 'error' && str2 === 'HTMLcontainer-Empty') {
         HtmlContainer.innerHTML = '';
-        HtmlContainer.append(loader);
-
-        // ERROR UI LOGIC
-        const loaders = HtmlContainer.querySelectorAll('.news_card_loaders');
-        loaders.forEach(card => {
-            const image = card.querySelector('.loading_news_image')
-            image.innerHTML = `${errorSvg}`;
-            image.classList.add('flex', 'justify-center', 'items-center')
-            image.classList.remove('animate-pulse');
-            card.querySelectorAll('p').forEach(p => p.remove());
-            const p = document.createElement('p');
-            p.classList.add('flex', 'gap-2')
-            p.innerHTML = `
-            ${errorSvg} Data is not available, please try again later...
-            `
-            card.append(p);
-        })
+        HtmlContainer.append(
+            ErrorTemplate.content.cloneNode(true)
+        );
     }
     else if (str === 'error' && str2 === 'HTMLcontainer-NotEmpty') {
-        HtmlContainer.append(loader);
-        const loaders = HtmlContainer.querySelectorAll('.news_card_loaders');
-        loaders.forEach(card => {
-            const image = card.querySelector('.loading_news_image')
-            image.innerHTML = `${errorSvg}`;
-            image.classList.add('flex', 'justify-center', 'items-center')
-            image.classList.remove('animate-pulse');
-            card.querySelectorAll('p').forEach(p => p.remove());
-            const p = document.createElement('p');
-            p.classList.add('flex', 'gap-2')
-            p.innerHTML = `
-            ${errorSvg} Data is not available, please try again later...
-            `
-            card.append(p);
-        })
+        HtmlContainer.querySelectorAll('.news_card_loaders').forEach(loader => loader.remove());
+        HtmlContainer.append(
+            ErrorTemplate.content.cloneNode(true)
+        );
     }
 };
 
@@ -159,14 +122,21 @@ const addTopHeadlines = (str, obj, nextPage, str2) => {
         headlinesContainer.append(loader2);
 
         // ========== FETCHING NEXT BATCH OF TOP HEADLINES CONTAINER ==========
-        const url = `https://newsdata.io/api/1/latest?apikey=${NEWS_API_KEY}&q=${str}&size=10&page=${nextPage}`
-        const response = await fetch(url);
-        const newData = await response.json();
-        console.log(newData);
-        console.log(newData.nextPage);
+        try {
+            const url = `https://newsdata.io/api/1/latest?apikey=${NEWS_API_KEY}&q=${str}&size=10&page=${nextPage}`
+            const response = await fetch(url);
+            const newData = await response.json();
+            // console.log(newData);
+            // console.log(newData.nextPage);
 
-        // =============  GIVING THE DATA TO FILL RENDER ON UI  ================
-        addTopHeadlines(str, newData, newData.nextPage, 'true');
+            // =============  GIVING THE DATA TO FILL RENDER ON UI  ================
+            addTopHeadlines(str, newData, newData.nextPage, 'true');
+        } catch (error) {
+            console.log('There was en error: Not found!', error);
+            headlinesContainer.append(
+                TopHeadlinesErrorTemplate.content.cloneNode(true)
+            )
+        }
     })
 }
 
@@ -187,7 +157,6 @@ const addBreakingNews = (obj) => {
 
                         </div>
     `;
-    console.log(`${renderNewsImg(obj.results[0].image_url, 'news Image')}`)
 }
 
 const addNextCategoryNews = (obj, HTMLcontainer, str) => {
@@ -234,7 +203,7 @@ const addCategoryNews = (obj, HtmlContainer, category) => {
     // ============= USING FETCHED DATA TO RENDER ON HTML ==============
 
     HtmlContainer.innerHTML = '';
-    console.log(obj)
+    //console.log(obj)
     if (obj.results.length === 0) {
         console.log(obj.results.length)
         HtmlContainer.innerHTML = `
@@ -245,7 +214,7 @@ const addCategoryNews = (obj, HtmlContainer, category) => {
                                     </div>
                                      0 News Articles Found For ${category.charAt(0).toUpperCase() + category.slice(1)} category in this City, <br> Please Try after some time..
                                 </div>`;
-                                     
+
         return;
     }
     obj.results.forEach((news) => {
