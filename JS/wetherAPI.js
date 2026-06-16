@@ -5,7 +5,7 @@ import { forMatSunTime } from "./utils.js";
 import { getNews, getCategoryNews} from "./newsAPI.js";
 // ================================= WEATHER API AND DATA FETCHING LOGIC ================================
 
-const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+const WEATHER_API_KEY = 'aad3ff0d1617a1925037afb51c4feefc';
 
 // ==== Getting city details for fetching weather data =====
 const userInput = document.getElementById('search_input');
