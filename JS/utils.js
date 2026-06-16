@@ -22,7 +22,7 @@ const turnCateText = (str, limit) => {
     return str + '.';
 }
 
-const newsImageFallback = './public/assets/Images/default_breaking_news_image.avif';
+const newsImageFallback = './public/assets/default_breaking_news_image.avif';
 const getNewsImageSrc = (url) => url || newsImageFallback;
 
 const renderNewsImg = (url, alt) => {
@@ -32,19 +32,19 @@ const renderNewsImg = (url, alt) => {
 
 // ==================== OBJECT OF WEATHER CONDITIONS AND WEATHER IMAGES ======================= 
 const weatherImages = [
-    { name: 'clearSky', src: './public/assets/Images/clear_sky.avif' },
-    { name: 'fewClouds', src: './public/assets/Images/few_clouds.avif' },
-    { name: 'scatteredClouds', src: './public/assets/Images/scattered_clouds.jpg' },
-    { name: 'brokenClouds', src: './public/assets/Images/broken_clouds.avif' },
-    { name: 'showerRain', src: './public/assets/Images/shower_rain.webp' },
-    { name: 'rain', src: './public/assets/Images/rain.jpg' },
-    { name: 'thunderstorm', src: './public/assets/Images/thunderStorm.jpg' },
-    { name: 'snow', src: './public/assets/Images/snow.avif' },
-    { name: 'mist', src: './public/assets/Images/mist.avif' }
+    { name: 'clearSky', src: './public/assets/clear_sky.avif' },
+    { name: 'fewClouds', src: './public/assets/few_clouds.avif' },
+    { name: 'scatteredClouds', src: './public/assets/scattered_clouds.jpg' },
+    { name: 'brokenClouds', src: './public/assets/broken_clouds.avif' },
+    { name: 'showerRain', src: './public/assets/shower_rain.webp' },
+    { name: 'rain', src: './public/assets/rain.jpg' },
+    { name: 'thunderstorm', src: './public/assets/thunderStorm.jpg' },
+    { name: 'snow', src: './public/assets/snow.avif' },
+    { name: 'mist', src: './public/assets/mist.avif' }
 ]
 
 // =========== SETTING WEATHER IMAGES ACCORDING TO WEATHER STATUS CODES  =============
-const defaultWeatherImage = './public/assets/Images/sky_default_image.avif'
+const defaultWeatherImage = './public/assets/sky_default_image.avif'
 const getWeatherImageSrc = (statusCode) => {
     let conditionName = null
 
