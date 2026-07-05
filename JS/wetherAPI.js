@@ -104,7 +104,7 @@ const getGeoLocation = () => {
         if (!city) return;
 
         try {
-            const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${wKey}`)
+            const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${wKey}`)
             if (!response.ok) {
                 throw new Error('Failed to fetch weather data!')
             }
