@@ -9,9 +9,6 @@ const forMatSunTime = (unixSeconds, offsetSec) => {
     const hours12 = hours % 12 || 12;
 
     return `${hours12}:${minutes} ${period}`;
-    // console.log(date)
-    // console.log(hours)
-    // console.log(minutes)
 }
 
 const turnCateText = (str, limit) => {
@@ -22,7 +19,7 @@ const turnCateText = (str, limit) => {
     return str + '.';
 }
 
-const newsImageFallback = './public/assets/default_breaking_news_image.avif';
+const newsImageFallback = '/assets/default_breaking_news_image.avif';
 const getNewsImageSrc = (url) => url || newsImageFallback;
 
 const renderNewsImg = (url, alt) => {
@@ -32,19 +29,19 @@ const renderNewsImg = (url, alt) => {
 
 // ==================== OBJECT OF WEATHER CONDITIONS AND WEATHER IMAGES ======================= 
 const weatherImages = [
-    { name: 'clearSky', src: './public/assets/clear_sky.avif' },
-    { name: 'fewClouds', src: './public/assets/few_clouds.avif' },
-    { name: 'scatteredClouds', src: './public/assets/scattered_clouds.jpg' },
-    { name: 'brokenClouds', src: './public/assets/broken_clouds.avif' },
-    { name: 'showerRain', src: './public/assets/shower_rain.webp' },
-    { name: 'rain', src: './public/assets/rain.jpg' },
-    { name: 'thunderstorm', src: './public/assets/thunderStorm.jpg' },
-    { name: 'snow', src: './public/assets/snow.avif' },
-    { name: 'mist', src: './public/assets/mist.avif' }
+    { name: 'clearSky', src: '/assets/clear_sky.avif' },
+    { name: 'fewClouds', src: '/assets/few_clouds.avif' },
+    { name: 'scatteredClouds', src: '/assets/scattered_clouds.jpg' },
+    { name: 'brokenClouds', src: '/assets/broken_clouds.avif' },
+    { name: 'showerRain', src: '/assets/shower_rain.webp' },
+    { name: 'rain', src: '/assets/rain.jpg' },
+    { name: 'thunderstorm', src: '/assets/thunderStorm.jpg' },
+    { name: 'snow', src: '/assets/snow.avif' },
+    { name: 'mist', src: '/assets/mist.avif' }
 ]
 
 // =========== SETTING WEATHER IMAGES ACCORDING TO WEATHER STATUS CODES  =============
-const defaultWeatherImage = './public/assets/sky_default_image.avif'
+const defaultWeatherImage = '/assets/sky_default_image.avif'
 const getWeatherImageSrc = (statusCode) => {
     let conditionName = null
 
@@ -89,7 +86,10 @@ const returnGrowthColor = (num) => {
         return `<h1 class="growth text-green-600">+${return2decimals(num)}% (24h)</h1>`
     }else if(num === 0){
         return `<h1 class="growth">${num}% (24h)</h1>`
-    }else{
+    }
+    else if(num === null){
+        return `<h1 class="growth text-red-600">not available</h1>`
+    }else if(num < 0){
         return `<h1 class=" text-red-600">${num.toFixed(2)}% (24h)</h1>`;
     }
 }

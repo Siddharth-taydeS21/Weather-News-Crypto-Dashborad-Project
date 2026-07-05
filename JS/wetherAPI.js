@@ -5,7 +5,8 @@ import { forMatSunTime } from "./utils.js";
 import { getNews, getCategoryNews} from "./newsAPI.js";
 // ================================= WEATHER API AND DATA FETCHING LOGIC ================================
 
-const WEATHER_API_KEY = 'aad3ff0d1617a1925037afb51c4feefc';
+const wKey = import.meta.env.VITE_WETHER_API_KEY;
+
 
 // ==== Getting city details for fetching weather data =====
 const userInput = document.getElementById('search_input');
@@ -29,22 +30,19 @@ const WeatherForecastObjects = (obj) => {
 }
 
 const getWeatherDetails = async (obj) => {
-    const { lat, lon, cityName, WEATHER_API_KEY } = obj;
-    const coordinates = [lat, lon, cityName, WEATHER_API_KEY];
+    const { lat, lon, cityName, wKey } = obj;
+    const coordinates = [lat, lon, cityName];
     localStorage.setItem('Weather_coordinates', JSON.stringify(coordinates));
 
     // ================ HANDLING LOADING STATES ====================
     isMainWeatherLoading('load');
-    
-    // // console.log(lat, lon, cityName, WEATHER_API_KEY);
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`)
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${wKey}`)
         if (!response.ok) {
             throw new Error('Failed to fetch weather data!')
         }
 
         const data = await response.json();
-        //console.log(data);
 
         //GETTING DATA FOR MAIN WEATHER CARD (.main_weather_card) :-
         const displayCityName = data.city.name;
@@ -88,7 +86,6 @@ const getWeatherDetails = async (obj) => {
 
     }
     catch (error) {
-        console.log(error);
         alert("Could not load data. Please try again later.");
         // SHOW WEATHER ERROR ON UI
         isMainWeatherLoading('error');
@@ -98,6 +95,7 @@ const getWeatherDetails = async (obj) => {
 
 // FETCHING DATA ON THE BASIC OF USER INPUT
 const getGeoLocation = () => {
+    // debugger
     userInput.addEventListener('keydown', async (e) => {
         if (e.key !== 'Enter') return;
         e.preventDefault();
@@ -106,7 +104,7 @@ const getGeoLocation = () => {
         if (!city) return;
 
         try {
-            const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${WEATHER_API_KEY}`)
+            const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${wKey}`)
             if (!response.ok) {
                 throw new Error('Failed to fetch weather data!')
             }
@@ -122,10 +120,9 @@ const getGeoLocation = () => {
             const cityName = data[0].name;
 
 
-            getWeatherDetails({ lat, lon, cityName, WEATHER_API_KEY });
+            getWeatherDetails({ lat, lon, cityName, wKey });
         } catch (error) {
             // alert("Could not load data. Please try again later.");
-            console.log('There was en error: Not found!', error);
             isMainWeatherLoading('error');
         } finally{
             isMainWeatherLoading("false");
@@ -142,10 +139,10 @@ const getUserLocation = () => {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
 
-            getWeatherDetails({ lat, lon, WEATHER_API_KEY });
+            getWeatherDetails({ lat, lon, wKey });
         });
     } else {
-        console.log("Geolocation is not supported by this browser.");
+        alert("Geolocation is not supported by this browser.");
     }
 
 }

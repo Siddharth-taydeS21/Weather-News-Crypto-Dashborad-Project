@@ -1,8 +1,8 @@
-export { notificationBtn, refreshBtn, alertsContainer, clearAlertsBtn, Coins, alerts, CRYPTO_API_KEY };
+export { notificationBtn, refreshBtn, alertsContainer, clearAlertsBtn, Coins, alerts, cKey };
 import { renderAlertList } from "./cryptoUI.js";
 import { fetchData } from "./cryptoAPI.js";
 
-const CRYPTO_API_KEY = 'CG-thCGGkV4ePKAt1xzwSibm9HA';
+const cKey = import.meta.env.VITE_CRYPTO_API_KEY;
 
 const refreshBtn = document.querySelector('.refreshBtn');
 const notificationBtn = document.querySelector('.notificationBtn');
@@ -25,7 +25,6 @@ clearAlertsBtn.addEventListener('click', () => {
 // ask for Notification permission & notify btn text change on click functionality
 const AskForNotifications = () => {
     if (!Notification in window) {
-        console.log('This browser does not support to show notifications.');
         return;
     }
     
@@ -38,10 +37,9 @@ const AskForNotifications = () => {
         notificationBtn.addEventListener('click', async () => {
             const permission = await Notification.requestPermission();
             if (permission === 'granted') {
-                console.log('Permission Granted!')
                 notificationBtn.textContent = 'Notifications Enabled';
             }else if (permission === 'denied'){
-                console.log('Permission Denied..')
+                alert('You will never receive Notification If you used alert in Crypto price tracker, if you want us to Notify on alerts then make sure to Allow Notifications')
             }
         })
     }

@@ -1,7 +1,7 @@
 // ================= EXPORTS AND IMPORTS =====================
 export { fetchData };
 import { renderCryptoCards, isCryptoSectionLoading, renderAlertList } from "./cryptoUI.js";
-import { CRYPTO_API_KEY, Coins, refreshBtn } from './cryptoStates.js'
+import { cKey, Coins, refreshBtn } from './cryptoStates.js'
 
 // ===================== CRYPTO API KEY =======================
 
@@ -15,7 +15,7 @@ const fetchData = async () => {
         const response = await fetch(url, {
             headers: {
                 'accept': 'application/json',
-                'x-cg-demo-api-key': `${CRYPTO_API_KEY}`
+                'x-cg-demo-api-key': `${cKey}`
             }
         });
 
@@ -24,7 +24,6 @@ const fetchData = async () => {
         }
 
         const data = await response.json();
-        //console.log(data)
         data.forEach(element => {
             Coins.push(element)
         });
@@ -33,7 +32,6 @@ const fetchData = async () => {
 
     } catch (error) {
         //alert('Could not fetch Crypto Data!');
-        console.log(error);
         isCryptoSectionLoading('error');
     }
 }

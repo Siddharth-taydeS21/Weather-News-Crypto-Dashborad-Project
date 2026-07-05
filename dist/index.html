@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- =========================== FAVICON =========================== -->
+    <link rel="shortcut icon" href="/assets/weather-favicon.webp" type="image/x-icon">
+
+    <!-- ======================= REMIX ICON =========================== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+
+    <!-- ======================= TAILWIND CSS =========================== -->
+
+    <title>Weather | News | Crypto Dashboard | Made by Siddharth</title>
+  <script type="module" crossorigin src="/assets/index-xBXbNQZx.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-B-I0Qaki.css">
+</head>
+
+<body>
+    <!-- ======================= HEADER =========================== -->
+    <header>
+        <nav
+            class="w-full lg:max-w-7xl mx-auto h-full p-4 rounded-4xl flex justify-between items-center relative md:px-8">
+            <a href="#" class="logo text-black text-xl font-semibold md:text-2xl" id="logo">DASHBOARD</a>
+
+            <div
+                class="nav_menu max-lg:absolute max-lg:top-17 max-lg:left-[120%] max-lg:right-0 max-lg:w-3/5 max-lg:mx-auto max-lg:bg-gray-200 max-lg:text-center max-lg:p-6 max-lg:border max-lg:border-gray-400 max-lg:rounded-4xl transition-[left] duration-500">
+                <ul class="nav_list max-lg:flex max-lg:flex-col max-lg:gap-y-3 flex gap-x-8">
+                    <li class="nav_link">
+                        <a href="#">Home</a>
+                    </li>
+
+                    <li class="nav_link">
+                        <a href="#news">News</a>
+                    </li>
+
+                    <li class="nav_link">
+                        <a href="#sports_news">Sports News</a>
+                    </li>
+
+                    <li class="nav_link">
+                        <a href="#tech_news">Tech News</a>
+                    </li>
+
+                    <li class="nav_link">
+                        <a href="#business_news">Business News</a>
+                    </li>
+
+                    <li class="nav_link">
+                        <a href="#crypto">Crypto</a>
+                    </li>
+                </ul>
+
+                <!-- CLOSE BUTTON -->
+                <div id="close_button" class="absolute top-4 right-5 lg:hidden text-black font-semibold cursor-pointer">
+                    <i class="ri-close-large-fill"></i>
+                </div>
+            </div>
+
+            <div id="toggle_button" class="lg:hidden">
+                <i class="ri-menu-line text-black text-xl font-semibold cursor-pointer"></i>
+            </div>
+            <!-- TOGGLE BUTTON -->
+        </nav>
+    </header>
+
+    <!-- ======================= MAIN =========================== -->
+    <main>
+        <!-- ======================= WEATHER SECTION =========================== -->
+        <section id="weather">
+            <div class="weather_container container grid gap-y-12 justify-center">
+                <div class="weather_main_Content grid gap-10 w-full relative">
+                    <div class="weather_title_searchBar grid gap-8 md:gap-4 w-full items-center md:grid-cols-[2fr_3fr]">
+                        <div class="grid gap-3">
+                            <h3 class="weather_description text-lg font-semibold md:text-2xl md:font-extrabold">
+                                Get Weather, News & Crypto
+                                related Details
+                            </h3>
+                            <div class="weather_heading text-3xl font-bold md:font-extrabold lg:text-4xl">
+                                ALL IN ONE PLACE!
+                            </div>
+                        </div>
+
+                        <div class="weather_search_bar w-full flex flex-col gap-y-4 justify-center">
+                            <label
+                                class="shadow-md bg-gray-50 border border-gray-100 w-full p-3 px-5 rounded-xl flex justify-start items-center gap-2">
+                                <i class="ri-search-line"></i>
+                                <input type="text" id="search_input" placeholder="Search your City"
+                                    class="w-full px-1 focus:outline-none focus:bg-none">
+                            </label>
+                            <div class="line_break bg-gray-200 h-[2px] w-9/10 mx-auto flex justify-center relative">
+
+                            </div>
+                            <button id="current_locationBtn"
+                                class="shadow-md bg-gray-50 border border-gray-100 w-full p-3 rounded-xl font-semibold">Use
+                                your current
+                                location</button>
+                        </div>
+                    </div>
+
+                    <div class="wether_details grid gap-4 md:grid-cols-[2fr_3fr]">
+
+                        <div
+                            class="main_weather_card flex flex-col justify-between gap-y-3 shadow-md/20 border border-gray-100 p-3 md:p-4 rounded-2xl">
+                           
+                             <div 
+                                class="weather_image_container bg-black flex flex-col gap-y-3 justify-between overflow-hidden p-3 rounded-xl relative h-[250px] md:h-[80%]">
+                                <img src="/assets/sky_default_image.avif" alt="image"
+                                    class="absolute top-0 left-0 h-full w-full bg-center bg-cover bg-no-repeat mask-b-from-60% mask-b-to-100%">
+                                <div
+                                    class="location w-[92%] flex justify-between items-center p-2 bg-gray-200 rounded-4xl absolute top-3 left-0 right-0 mx-auto">
+                                    <span id="city" class="ml-3">City</span>
+                                    <span id="country" class="bg-blue-300 p-[.25rem_.5rem_.25rem_1rem] rounded-3xl">
+                                        Country
+                                        <i class="ri-map-pin-fill"></i>
+                                    </span>
+                                </div>
+
+
+                                <div
+                                    class="temperature text-5xl font-bold md:text-6xl lg:text-7xl text-white text-shadow-xs/50 absolute left-4 bottom-3">
+                                    _°</div>
+                                <div
+                                    class="weather_description text-white flex flex-col text-end text-sm text-shadow-xs absolute right-4 bottom-3">
+                                    <h2 class="text-xl lg:text-2xl lg:font-bold capitalize">description</h2>
+                                    <span id="feels_like_temp">Feels like : __°</span>
+                                </div>
+                            </div>
+
+                            <div class="detail_badges text-sm flex gap-3 items-end md:h-[20%]">
+                                <span class="max_temp bg-red-200 px-2 py-1 rounded-2xl">MAX-TEMP: 00</span>
+                                <span class="min_temp bg-blue-200 px-2 py-1 rounded-2xl">MIN-TEMP: 00</span>
+                            </div> 
+                        </div>
+
+                        <!-- ========== LOADING TEMPLATE OF MAIN WEATHER CARD (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
+                        <template id="weather_card_template">
+                            <div
+                                class="weather_image_container flex justify-center items-center text-center bg-gray-200 overflow-hidden p-3 rounded-xl relative h-[250px] md:h-[80%] animate-pulse">
+                                <p>Loading...</p>
+                            </div>
+
+                            <div class="detail_badges text-sm flex gap-3 items-end md:h-[20%]">
+                                <span class="max_temp  bg-gray-200 w-1/2 h-8 rounded-2xl animate-pulse"></span>
+                                <span class="min_temp  bg-gray-200 w-1/2 h-8 rounded-2xl animate-pulse"></span>
+                            </div>
+                        </template>
+
+                        <div
+                            class="weather_highlights_cards grid gap-6 shadow-md/20 border border-gray-100 p-[1.5rem_.74rem] rounded-2xl">
+                            
+                            <h1 class="highlights_main_text text-center text-3xl lg:text-4xl font-bold">Todays
+                                Highlights</h1>
+                            <div class="highlights_cards_container grid gap-4 grid-cols-2 w-full">
+                                <article class="highlight_card">
+                                    <div id="item_image" class="w-20 mx-auto">
+                                        <img src="/assets/sun-rise.png" alt="image">
+                                    </div>
+                                    <div>
+                                        <h2>Sun-rise: </h2>
+                                        <span id="sunrise">00.00</span>
+                                    </div>
+                                </article>
+
+                                <article class="highlight_card">
+                                    <div id="item_image" class="w-22 mx-auto">
+                                        <img src="/assets/sun-set.png" alt="image">
+                                    </div>
+                                    <div>
+                                        <h2>Sun-set: </h2>
+                                        <span id="sunset">00.00</span>
+                                    </div>
+                                </article>
+
+                                <article class="highlight_card">
+                                    <div id="item_image" class="w-18 mx-auto">
+                                        <img src="/assets/humidity.png" alt="image">
+                                    </div>
+                                    <div>
+                                        <h2>Humidity: </h2>
+                                        <span id="humidity">00%</span>
+                                    </div>
+                                </article>
+
+                                <article class="highlight_card">
+                                    <div id="item_image" class="w-19 mt-2 mx-auto">
+                                        <img src="/assets/wind-speed.png" alt="image">
+                                    </div>
+                                    <div>
+                                        <h2>Wind speed: </h2>
+                                        <span id="windSpeed">M/hr <br> KM/hr</span>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+
+                        <!-- ========== LOADING TEMPLATE OF WEATHER HIGHLIGHTS CARD (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
+                        <template id="weather_highlights_cards_template"
+                            class="weather_highlights_cards hidden grid gap-6 shadow-md/20 border border-gray-100 p-[1.5rem_.74rem] rounded-2xl">
+                            <button id="highlight_loader_btn" type="button"
+                                class="inline-flex justify-center items-center px-4 py-2 mb-2 font-semibold leading-6 text-3xl lg:text-4xl rounded-md text-black  transition ease-in-out duration-150 cursor-not-allowed"
+                                disabled>
+                                <svg class="animate-spin -ml-1 mr-3 size-5 text-black" xmlns="" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                    </path>
+                                </svg>
+                                Loading…
+                            </button>
+                            <div class="highlights_cards_container grid gap-4 grid-cols-2 w-full">
+                                <article class="highlight_card h-[200px] animate-pulse">
+                                    <div id="item_image" class="w-20 mx-auto">
+
+                                    </div>
+                                    <div class="flex flex-col md:flex-row gap-2">
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                    </div>
+                                </article>
+
+                                <article class="highlight_card h-[200px] animate-pulse">
+                                    <div id="item_image" class="w-22 mx-auto">
+
+                                    </div>
+                                    <div class="flex flex-col md:flex-row gap-2">
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                    </div>
+                                </article>
+
+                                <article class="highlight_card h-[200px] animate-pulse">
+                                    <div id="item_image" class="w-18 mx-auto">
+
+                                    </div>
+                                    <div class="flex flex-col md:flex-row gap-2">
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                    </div>
+                                </article>
+
+                                <article class="highlight_card h-[200px] animate-pulse">
+                                    <div id="item_image" class="w-19 mt-2 mx-auto">
+
+                                    </div>
+                                    <div class="flex flex-col md:flex-row gap-2">
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                        <p class="bg-gray-200 h-6 w-full rounded animate-pulse"></p>
+                                    </div>
+                                </article>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- wether error template its not visible on main page -->
+                    <template id="weather_error_template">
+                        <article class="col-span-2 lg:col-span-3 text-center py-20 grid gap-2">
+                            <div class="error_image">
+                                <div
+                                    class="icon_wrapper border p-7 size-[70px] justify-self-center flex justify-center items-center rounded-full border-gray-200 shadow-sm mb-4">
+                                    <i class="ri-cloud-off-line text-3xl"></i>
+                                </div>
+                                <p class="font-semibold text-2xl">Error 404</p>
+                            </div>
+                            <div class="error_massage">
+                                <h1>Cloud not Load Details</h1>
+                                <small>(General error of poor network)</small>
+                            </div>
+                        </article>
+                    </template>
+
+                </div>
+
+                <div class="weather_forecast">
+                    <h1 class="weather_forecast_title my-2 text-3xl md:text-4xl mb-2 md:mb-4 font-extrabold">
+                        Next 5 days weather forecast
+                    </h1>
+                    <div class="weather_forecast_container grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                        <article class="forecast_card bg-amber-100">
+                            <p class="card_date">Today</p>
+                            <div class="weather_image_container">
+                                <img src="/assets/sky_default_image.avif" alt="image" class="weather_img">
+                            </div>
+                            <div class="weather_container">
+                                <p class="main_temp">24°</p>
+                                <p class="weather_description">description</p>
+                            </div>
+                        </article>
+
+                        <article class="forecast_card">
+                            <p class="card_date">day name</p>
+                            <div class="weather_image_container">
+                                <img src="/assets/sky_default_image.avif" alt="image" class="weather_img">
+                            </div>
+                            <div class="weather_container">
+                                <p class="main_temp">24°</p>
+                                <p class="weather_description">description</p>
+                            </div>
+                        </article>
+
+                        <article class="forecast_card">
+                            <p class="card_date">day name</p>
+                            <div class="weather_image_container">
+                                <img src="/assets/sky_default_image.avif" alt="image" class="weather_img">
+                            </div>
+                            <div class="weather_container">
+                                <p class="main_temp">24°</p>
+                                <p class="weather_description">description</p>
+                            </div>
+                        </article>
+
+                        <article class="forecast_card">
+                            <p class="card_date">day name</p>
+                            <div class="weather_image_container">
+                                <img src="/assets/sky_default_image.avif" alt="image" class="weather_img">
+                            </div>
+                            <div class="weather_container">
+                                <p class="main_temp">24°</p>
+                                <p class="weather_description">description</p>
+                            </div>
+                        </article>
+
+                        <article class="forecast_card">
+                            <p class="card_date">day name</p>
+                            <div class="weather_image_container">
+                                <img src="/assets/sky_default_image.avif" alt="image" class="weather_img">
+                            </div>
+                            <div class="weather_container">
+                                <p class="main_temp">24°</p>
+                                <p class="weather_description">description</p>
+                            </div>
+                        </article>
+
+                        <article class="forecast_card">
+                            <p class="card_date">day name</p>
+                            <div class="weather_image_container">
+                                <img src="/assets/sky_default_image.avif" alt="image" class="weather_img">
+                            </div>
+                            <div class="weather_container">
+                                <p class="main_temp">24°</p>
+                                <p class="weather_description">description</p>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <!-- ========== LOADING TEMPLATE OF WEATHER FORECAST CARDS (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
+                <template id="weather_forecasts_card_template">
+                    <button id="forecast_loader_btn" type="button"
+                        class="inline-flex justify-center items-center px-4 py-2 mb-3 font-semibold leading-6 text-3xl lg:text-4xl rounded-md text-black  transition ease-in-out duration-150 cursor-not-allowed"
+                        disabled>
+                        <svg class="animate-spin -ml-1 mr-3 size-5 text-black" xmlns="" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                            </circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                        Loading…
+                    </button>
+
+                    <div class="weather_forecast_container grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                        <article class="forecast_card">
+                            <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                            <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                            </div>
+                            <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                        </article>
+
+                        <article class="forecast_card">
+                            <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                            <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                            </div>
+                            <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                        </article>
+
+                        <article class="forecast_card">
+                            <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                            <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                            </div>
+                            <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                        </article>
+
+                        <article class="forecast_card">
+                            <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                            <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                            </div>
+                            <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                        </article>
+
+                        <article class="forecast_card">
+                            <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                            <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                            </div>
+                            <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                        </article>
+
+                        <article class="forecast_card">
+                            <p class="w-full h-6 rounded bg-gray-200 animate-pulse"></p>
+                            <div class="weather_image_container w-full h-1/2 bg-gray-200 rounded-md animate-pulse">
+                            </div>
+                            <div class="weather_container w-[60%] bg-gray-200 h-6 rounded animate-pulse"></div>
+                        </article>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <!-- ======================= NEWS SECTION =========================== -->
+        <section id="news" class="bg-gray-100">
+            <div class="news_container container grid justify-center sm:grid-cols-[470px] md:grid-cols-1 gap-12"
+                id="main_news">
+                <div class="breaking_news_container grid  gap-6 gap-y-10 md:grid-cols-[4fr_3fr]">
+                    <div class="breaking_news">
+                        <h1 class="braking_news_title">Breaking News</h1>
+                        <div
+                            class="breaking_news_content  w-full h-[440px] flex flex-col justify-between bg-white shadow-md border border-gray-200 p-3 rounded-2xl">
+                            <div
+                                class="breaking_news_image w-full h-[300px] bg-gray-300 rounded-xl mb-4 overflow-hidden flex justify-center items-center">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <a href=""
+                                class="breaking_news_title font-bold text-lg transition-all duration-300 hover:underline">
+                                Search To get started .... You'll get news previews here
+                            </a>
+
+                        </div>
+                        
+                    </div>
+
+                    <!-- ========== LOADING TEMPLATE FOR BREAKING NEWS CARD (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
+                    <template id="breaking_news_template">
+                        <div class="breaking_news">
+                            <h1 class="braking_news_Title">Loading..</h1>
+                            <div
+                                class="breaking_news_content  w-full h-[440px] flex flex-col justify-between bg-white shadow-md border border-gray-200 p-3 rounded-2xl">
+                                <div
+                                    class="breaking_news_image w-full h-[300px] bg-gray-300 rounded-xl mb-4 overflow-hidden flex justify-center items-center animate-pulse">
+                                    <!-- <img src="" alt="news Image" id="breaking_news_image"> -->
+                                    <div
+                                        class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                                    </div>
+                                </div>
+                                <p class="w-full bg-gray-200 h-6 rounded animate-pulse mb-2"></p>
+                                <p class="w-full bg-gray-200 h-6 rounded animate-pulse mb-2"></p>
+                                <p class="w-[60%] bg-gray-200 h-6 rounded animate-pulse "></p>
+
+                            </div>
+                        </div>
+                    </template>
+
+                    <div class="top_headlines flex flex-col justify-center">
+                        <h1 class="top_headline_title">Top Headlines</h1>
+
+                        <div
+                            class="top_headlines_container max-h-[440px] h-[440px] overflow-y-scroll grid gap-4 justify-self-stretch bg-white shadow-md border border-gray-200 p-3 rounded-2xl">
+                            <article class="news_slide">
+
+                                <div class="headline_image">
+                                    <i class="ri-newspaper-line text-5xl text-gray-500">..</i>
+                                </div>
+                                <div class="headline_title">
+                                    <h1 id="headline_title_text" class="overflow-clip">
+                                        You'll get News previews here, Search Your City name to get latest news
+                                        articles..
+                                    </h1>
+                                </div>
+                            </article>
+
+                            <article class="news_slide">
+                                <div class="headline_image">
+                                    <i class="ri-newspaper-line text-5xl text-gray-500">..</i>
+                                </div>
+                                <div class="headline_title">
+                                    <h1 id="headline_title_text" class="overflow-clip">
+                                        You'll get News previews here, Search Your City name to get latest news
+                                        articles..
+                                    </h1>
+                                </div>
+                            </article>
+
+                            <article class="news_slide">
+                                <div class="headline_image">
+                                    <i class="ri-newspaper-line text-5xl text-gray-500">..</i>
+                                </div>
+                                <div class="headline_title">
+                                    <h1 id="headline_title_text" class="overflow-clip">
+                                        You'll get News previews here, Search Your City name to get latest news
+                                        articles..
+                                    </h1>
+                                </div>
+                            </article>
+
+                            <article class="news_slide">
+                                <div class="headline_image">
+                                    <i class="ri-newspaper-line text-5xl text-gray-500">..</i>
+                                </div>
+                                <div class="headline_title">
+                                    <h1 id="headline_title_text" class="overflow-clip">
+                                        You'll get News previews here, Search Your City name to get latest news
+                                        articles..
+                                    </h1>
+                                </div>
+                            </article>
+
+                            <article class="news_slide">
+                                <div class="headline_image">
+                                    <i class="ri-newspaper-line text-5xl text-gray-500">..</i>
+                                </div>
+                                <div class="headline_title">
+                                    <h1 id="headline_title_text" class="overflow-clip">
+                                        You'll get News previews here, Search Your City name to get latest news
+                                        articles..
+                                    </h1>
+                                </div>
+                            </article>
+                        </div>
+                        <!-- ========== LOADING TEMPLATE FOR TOP HEADLINE CARDS (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
+                        <template id="Top_headlines_template">
+                            <article class="news_slide_loaders flex justify-center">
+                                <div class="headline_image animate-pulse">
+                                    <!-- <img src="" alt=""> -->
+                                    <div
+                                        class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                                    </div>
+                                </div>
+                                <div class="headline_title flex flex-col gap-y-1 justify-center">
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[60%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                </div>
+                            </article>
+
+                            <article class="news_slide_loaders flex justify-center">
+                                <div class="headline_image animate-pulse">
+                                    <!-- <img src="" alt=""> -->
+                                    <div
+                                        class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                                    </div>
+                                </div>
+                                <div class="headline_title flex flex-col gap-y-1 justify-center">
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[60%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                </div>
+                            </article>
+
+                            <article class="news_slide_loaders flex justify-center">
+                                <div class="headline_image animate-pulse">
+                                    <!-- <img src="" alt=""> -->
+                                    <div
+                                        class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                                    </div>
+                                </div>
+                                <div class="headline_title flex flex-col gap-y-1 justify-center">
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[60%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                </div>
+                            </article>
+
+                            <article class="news_slide_loaders flex justify-center">
+                                <div class="headline_image animate-pulse">
+                                    <!-- <img src="" alt=""> -->
+                                    <div
+                                        class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                                    </div>
+                                </div>
+                                <div class="headline_title flex flex-col gap-y-1 justify-center">
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[90%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                    <p class="w-[60%] bg-gray-200 h-5 rounded mr-auto animate-pulse"></p>
+                                </div>
+                            </article>
+                        </template>
+                    </div>
+                </div>
+
+
+                <div class="sports_news" id="sports_news">
+                    <h1 class="news_section_title">Sports News</h1>
+
+                    <div class="sports_news_container">
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+                    </div>
+                </div>
+
+
+                <div class="tech_news" id="tech_news">
+                    <h1 class="news_section_title">Technology News</h1>
+
+                    <div class="tech_news_container">
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+                    </div>
+                </div>
+
+
+                <div class="business_news" id="business_news">
+                    <h1 class="news_section_title">Business News</h1>
+
+                    <div class="business_news_container">
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+
+                        <article class="news_card">
+                            <div class="news_image">
+                                <i class="ri-newspaper-line text-7xl text-gray-500">..</i>
+                            </div>
+                            <h1 class="news_title">
+                                You'll get News previews here, Search Your City name to get latest news articles..
+                            </h1>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- ========== LOADING CARDS TEMPLATE FOR TOP CATEGORY NEWS CONTAINER (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
+                <template id="category_news_template">
+                    <article class="news_card_loaders">
+                        <div class="loading_news_image animate-pulse">
+                            <div
+                                class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                            </div>
+                        </div>
+                        <div class="grid gap-2">
+                            <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
+                            <p class="bg-gray-300 w-[60%] h-6 rounded animate-pulse"></p>
+                        </div>
+                    </article>
+
+                    <article class="news_card_loaders">
+                        <div class="loading_news_image animate-pulse">
+                            <div
+                                class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                            </div>
+                        </div>
+                        <div class="grid gap-2">
+                            <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
+                            <p class="bg-gray-300 w-[60%] h-6 rounded animate-pulse"></p>
+                        </div>
+                    </article>
+
+                    <article class="news_card_loaders">
+                        <div class="loading_news_image animate-pulse">
+                            <div
+                                class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                            </div>
+                        </div>
+                        <div class="grid gap-2">
+                            <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
+                            <p class="bg-gray-300 w-[60%] h-6 rounded animate-pulse"></p>
+                        </div>
+                    </article>
+
+                    <article class="news_card_loaders">
+                        <div class="loading_news_image animate-pulse">
+                            <div
+                                class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                            </div>
+                        </div>
+                        <div class="grid gap-2">
+                            <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
+                            <p class="bg-gray-300 w-[60%] h-6 rounded animate-pulse"></p>
+                        </div>
+                    </article>
+
+                    <article class="news_card_loaders">
+                        <div class="loading_news_image animate-pulse">
+                            <div
+                                class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                            </div>
+                        </div>
+                        <div class="grid gap-2">
+                            <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
+                            <p class="bg-gray-300 w-[60%] h-6 rounded animate-pulse"></p>
+                        </div>
+                    </article>
+
+                    <article class="news_card_loaders">
+                        <div class="loading_news_image animate-pulse">
+                            <div
+                                class="spinner size-5 border-2 border-transparent border-t-gray-500 bg-transparent rounded-full animate-spin">
+                            </div>
+                        </div>
+                        <div class="grid gap-2">
+                            <p class="bg-gray-300 w-full h-6 rounded animate-pulse"></p>
+                            <p class="bg-gray-300 w-[60%] h-6 rounded animate-pulse"></p>
+                        </div>
+                    </article>
+                </template>
+            </div>
+        </section>
+
+        <!-- ======================= CRYPTO SECTION =========================== -->
+        <section id="crypto">
+            <div class="container grid sm:justify-center sm:grid-cols-[470px] md:grid-cols-1">
+                <div class="section_title w-full flex flex-col gap-y-12 sm:text-center lg:flex-row">
+                    <h1 class="text-2xl md:text-3xl w-full font-extrabold text-center lg:text-start">Crypto Price
+                        Tracker</h1>
+                    <div
+                        class="buttons w-full flex justify-between items-stretch lg:justify-end gap-4 items-centerS mb-4">
+                        <button
+                            class="refreshBtn p-[.3rem_1rem] rounded-lg shadow-sm border border-gray-200">Refresh</button>
+                        <button
+                            class="notificationBtn p-[.3rem_1rem] rounded-lg shadow-sm border border-gray-200">Enable
+                            Notifications</button>
+                    </div>
+                </div>
+
+
+                <div class="my-8 p-4 rounded-2xl shadow-lg border border-gray-200 grid gap-4 w-full">
+                    <h1 class="font-semibold text-center md:text-lg md:text-start"> • Top 15 • (CoinGecko)
+                        <br class="md:hidden"> • Refresh - every 60 seconds
+                    </h1>
+                    <div
+                        class="crypto_cards_grid w-full grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 rounded-2xl p-2 border border-gray-300 max-h-[600px] xl:max-h-[800px] overflow-y-scroll">
+
+                        <!-- ========== CARDS TEMPLATE FOR CRYPTO CARD GRID (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
+                        <template id="Crypto_coin_card_template">
+                            <article class="Crypto_coin_card">
+                                <div class="coin_details">
+                                    <div class="image_name">
+                                        <div class="image_wrapper">
+                                            <img src="/assets/sky_default_image.avif" alt="image" id="coin_img">
+                                        </div>
+                                        <div>
+                                            <h1 class="coin_name">Bitcoin</h1>
+                                            <h1 class="coin_code">BTC</h1>
+                                        </div>
+                                    </div>
+
+                                    <div class="price">
+                                        <h1 class="main_price">$132,566</h1>
+                                    </div>
+                                </div>
+
+                                <div class="alerts">
+                                    <div class="input">
+                                        <label for="alert" id="alert_label">
+                                            <input type="number" placeholder="Set Alert (USD)" id="alert">
+                                        </label>
+                                        <button class="set_alert_btn">Set <br> Alert</button>
+                                    </div>
+
+                                    <div class="market_cap">
+                                        <span>Market Cap :</span>
+                                        <span>$2,333,444,555,666</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </template>
+
+                        <!-- ========== LOADING CARDS TEMPLATE FOR CRYPTO CARD GRID (IT'S NOT VISIBLE ON MAIN PAGE) ========== -->
+                        <template id="Loading_crypto_card_template">
+                            <article class="Crypto_coin_card">
+                                <div class="coin_details">
+                                    <div class="image_name">
+                                        <div class="image_wrapper animate-pulse">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="alerts">
+                                    <div class="flex flex-col gap-2">
+                                        <p class="w-full h-8 bg-gray-200 rounded animate-pulse"></p>
+                                        <p class="w-[60%] h-8 bg-gray-200 rounded animate-pulse"></p>
+                                    </div>
+
+                                    <div class="market_cap">
+                                        <span class="w-[30%] h-4 bg-gray-200 rounded animate-pulse"></span>
+                                        <span class="w-[40%] h-4 bg-gray-200 rounded animate-pulse"></span>
+                                    </div>
+                                </div>
+                            </article>
+                        </template>
+
+                        <template id="Error_crypto_card_template">
+                            <article class="col-span-2 md:col-span-3 lg:col-span-4 text-center py-20 flex flex-col gap-2">
+                                <div class="error_image">
+                                    <div
+                                        class="icon_wrapper border p-7 size-[70px] justify-self-center flex justify-center items-center rounded-full border-gray-200 shadow-sm mb-4">
+                                        <i class="ri-cloud-off-line text-3xl"></i>
+                                    </div>
+                                    <p class="font-semibold text-2xl">Error 404</p>
+                                </div>
+                                <div class="error_massage">
+                                    <h1>Cloud not Load Details</h1>
+                                    <small>(General error of poor network)</small>
+                                </div>
+                            </article>
+                        </template>
+
+                        <template id="Error_TopHeadlines_card_template">
+                            <article class="text-center py-20 flex flex-col gap-2">
+                                <div class="error_image">
+                                    <div
+                                        class="icon_wrapper border p-7 size-[70px] justify-self-center flex justify-center items-center rounded-full border-gray-200 shadow-sm mb-4">
+                                        <i class="ri-cloud-off-line text-3xl"></i>
+                                    </div>
+                                    <p class="font-semibold text-2xl">Error 404</p>
+                                </div>
+                                <div class="error_massage">
+                                    <h1>Cloud not Load Details</h1>
+                                    <small>(General error of poor network)</small>
+                                </div>
+                            </article>
+                        </template>
+                    </div>
+                </div>
+
+                <div
+                    class="crypto_alerts my-8 p-4 rounded-2xl shadow-lg border border-gray-200 grid gap-4 max-h-[400px] overflow-y-scroll">
+                    <div class="header flex justify-between items-center border-b border-gray-300 pb-4">
+                        <strong>Active Alerts</strong>
+                        <a class="clearBtn" href="#crypto">Clear All</a>
+                    </div>
+                    <div class="crypto_alerts_list grid gap-3">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ======================= FOOTER =========================== -->
+    <footer class="footer w-full p-8 grid gap-10 bg-gray-100">
+        <div class="container grid gap-y-12 justify-center sm:grid-cols-[470px] md:grid-cols-2">
+            <div class="footer_data">
+                <div class="footer_info grid gap-4 mb-4">
+                        <a href="#" class="logo text-black text-xl font-semibold md:text-2xl" id="logo">DASHBOARD</a>
+
+                    <p class="footer_description">
+                        Get your all news related thoughts <br> fullfil here..
+                    </p>
+                </div>
+
+                <div class="footer_socials flex gap-x-3">
+                    <a href="https://www.linkedin.com/in/siddharth-tayde-7a9547318/" target="_blank" class="social_link">
+                        <i class="ri-linkedin-box-fill"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/siddhartxthetic/" target="_blank" class="social_link">
+                        <i class="ri-instagram-fill"></i>
+                    </a>
+
+                    <a href="https://x.com/SiddharthS21" target="_blank" class="social_link">
+                        <i class="ri-twitter-x-line"></i>
+                    </a>
+
+                    <a href="https://github.com/Siddharth-taydeS21" target="_blank" class="social_link">
+                        <i class="ri-github-fill"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer_content grid gap-12 md:justify-end">
+                <div class="footer_newsLatter xl:w-[350px] text-center">
+                    <h3 class="footer_title font-semibold mb-2">Stay Connected</h3>
+
+                    <p class="transition-colors duration-300 text-sm">
+                        Questions or feedback? we'd <br> love to hear from you.
+                    </p>
+
+                    <form action="" class="footer_form mt-8 bg-white w-full flex p-3 rounded-md shadow-sm xs:w-[300px] xl:w-[350px]">
+                        <input type="email" class="footer_input w-full bg-transparent pl-2 text-title-color" placeholder="Email address">
+
+                        <button class="footer_button size-[35px] rounded-md border border-gray-200 text-xl font-bold shadow-sm transition-colors cursor-pointer">
+                            <i class="ri-arrow-right-s-line"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <hr class="text-gray-400">
+
+        <span class="text-sm text-gray-500 text-center">© 2026 All rights reserved | Project developed by Siddharth</span>
+    </footer>
+    <!-- ======================= MAIN JS =========================== -->
+</body>
+
+</html>

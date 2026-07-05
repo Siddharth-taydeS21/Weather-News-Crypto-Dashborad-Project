@@ -89,7 +89,7 @@ const addTodaysHighlights = (obj) => {
                              <div class="highlights_cards_container grid gap-4 grid-cols-2 w-full">
                                  <article class="highlight_card">
                                      <div id="item_image" class="w-20 mx-auto">
-                                         <img src="./public/assets/sun-rise.png" alt="image">
+                                         <img src="/assets/sun-rise.png" alt="image">
                                      </div>
                                      <div>
                                          <h2>Sun-rise: </h2>
@@ -99,7 +99,7 @@ const addTodaysHighlights = (obj) => {
 
                                  <article class="highlight_card">
                                      <div id="item_image" class="w-22 mx-auto">
-                                         <img src="./public/assets/sun-set.png" alt="image">
+                                         <img src="/assets/sun-set.png" alt="image">
                                      </div>
                                      <div>
                                          <h2>Sun-set: </h2>
@@ -109,7 +109,7 @@ const addTodaysHighlights = (obj) => {
 
                                  <article class="highlight_card">
                                      <div id="item_image" class="w-18 mx-auto">
-                                         <img src="./public/assets/humidity.png" alt="image">
+                                         <img src="/assets/humidity.png" alt="image">
                                      </div>
                                      <div>
                                          <h2>Humidity: </h2>
@@ -119,7 +119,7 @@ const addTodaysHighlights = (obj) => {
 
                                  <article class="highlight_card">
                                      <div id="item_image" class="w-19 mt-2 mx-auto">
-                                         <img src="./public/assets/wind-speed.png" alt="image">
+                                         <img src="/assets/wind-speed.png" alt="image">
                                      </div>
                                      <div>
                                          <h2>Wind speed: </h2>
@@ -141,7 +141,6 @@ const addWeatherForeCastCards = (arr) => {
     container.innerHTML = '';
 
     arr.forEach((obj, index) => {
-        // console.log(obj)
         const unixTimestamp = obj.dt;
         let dayName = '';
         const date = new Date(unixTimestamp * 1000);

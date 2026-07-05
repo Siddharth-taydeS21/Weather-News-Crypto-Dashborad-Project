@@ -1,7 +1,7 @@
 // ============================= EXPORTS AND IMPORTS ==============================
 export { isNewsSectionLoading, isCategoryNewsLoading, addTopHeadlines, addBreakingNews, addNextCategoryNews, addCategoryNews };
 import { renderNewsImg, turnCateText } from "./utils.js";
-import { NewsClicks, NEWS_API_KEY } from "./newsAPI.js";
+import { NewsClicks, nKey } from "./newsAPI.js";
 import { errorSvg } from "./wetherUI.js"
 // ================================ LOADING STATES UI LOGIC FOR NEWS SECTION =================================
 const topHeadlinesContainer = document.querySelector('.top_headlines_container');
@@ -24,7 +24,9 @@ const isNewsSectionLoading = (str) => {
         const loader2 = topHeadlinesContainerTemplate.content.cloneNode(true);
         topHeadlinesContainer.append(loader2);
     } else if (str === 'error') {
-        const BreakingNewsCard = document.querySelector('.breaking_news_content')
+        const BreakingNewsCard = document.querySelector('.breaking_news_content');
+        const BreakingNewsTitle = document.querySelector('.braking_news_Title');
+        BreakingNewsTitle.textContent = 'Breaking News'
         BreakingNewsCard.innerHTML = '';
         BreakingNewsCard.append(
             ErrorTemplate.content.cloneNode(true)
@@ -123,16 +125,13 @@ const addTopHeadlines = (str, obj, nextPage, str2) => {
 
         // ========== FETCHING NEXT BATCH OF TOP HEADLINES CONTAINER ==========
         try {
-            const url = `https://newsdata.io/api/1/latest?apikey=${NEWS_API_KEY}&q=${str}&size=10&page=${nextPage}`
+            const url = `https://newsdata.io/api/1/latest?apikey=${nKey}&q=${str}&size=10&page=${nextPage}`
             const response = await fetch(url);
             const newData = await response.json();
-            // console.log(newData);
-            // console.log(newData.nextPage);
 
             // =============  GIVING THE DATA TO FILL RENDER ON UI  ================
             addTopHeadlines(str, newData, newData.nextPage, 'true');
         } catch (error) {
-            console.log('There was en error: Not found!', error);
             headlinesContainer.append(
                 TopHeadlinesErrorTemplate.content.cloneNode(true)
             )
@@ -203,9 +202,7 @@ const addCategoryNews = (obj, HtmlContainer, category) => {
     // ============= USING FETCHED DATA TO RENDER ON HTML ==============
 
     HtmlContainer.innerHTML = '';
-    //console.log(obj)
     if (obj.results.length === 0) {
-        console.log(obj.results.length)
         HtmlContainer.innerHTML = `
                                 <div class="text-xl lg:col-span-4 font-semibold text-center grid justify-center gap-2 my-20">
                                     <div
@@ -234,7 +231,7 @@ const addCategoryNews = (obj, HtmlContainer, category) => {
 
 
     HtmlContainer.innerHTML += `
-                    <div class="rounded-2xl flex justify-center items-center">
+                    <div class="showMore rounded-2xl flex justify-center items-center my-20">
                         <button class="bg-blue-400 h-10 w-40 rounded-2xl flex justify-center items-center" id="${category}_show_moreBtn">Show More..>></button>
                     </div>
 `

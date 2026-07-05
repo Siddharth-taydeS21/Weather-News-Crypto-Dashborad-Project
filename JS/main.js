@@ -23,19 +23,20 @@ nav_links.forEach(link => {
 })
 closeBtn.addEventListener('click', toggleLeft);
 
+//=====================================================
+const wKey = import.meta.env.VITE_WETHER_API_KEY;
 
 const getLocalStorageCoordinates = () => {
     const coordinates = JSON.parse(localStorage.getItem('Weather_coordinates'));
     if (!coordinates) {
         return;
     }else{
-        //lat, lon, cityName, WEATHER_API_KEY
+        //lat, lon, cityName, wKey
         const lat = coordinates[0];
         const lon = coordinates[1];
         const cityName = coordinates[2];
-        const WEATHER_API_KEY = coordinates[3];
 
-        getWeatherDetails({lat, lon, cityName, WEATHER_API_KEY});
+        getWeatherDetails({lat, lon, cityName, wKey});
     }
 }
 

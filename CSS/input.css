@@ -122,7 +122,8 @@
 
     .news_section_title,
     .top_headline_title,
-    .braking_news_title {
+    .braking_news_title, 
+    .braking_news_Title{
         @apply text-3xl pb-4 md:pb-8 md:text-4xl font-extrabold mb-4 text-center md:text-start;
     }
 
